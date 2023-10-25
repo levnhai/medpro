@@ -1,0 +1,54 @@
+.guide_header {
+  background-color: #fff;
+
+  .guide_content {
+    padding: 50px 0px 40px 0px;
+    text-align: center;
+    border-bottom: 2px solid #e3e3e3;
+
+    .guide_title {
+      font-weight: 700;
+      font-size: 39px;
+      line-height: 48px;
+      color: #00b5f1;
+      background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-family: Montserrat, sans-serif !important;
+    }
+
+    .guide_des {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #686868;
+    }
+  }
+
+  .guide_btnGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 24px;
+
+    .giude_btn {
+      padding: 10px 16px;
+      background: #ebf9fd;
+      border-radius: 50px;
+      color: #11a2f3;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .active {
+      background: linear-gradient(84.69deg, #00b5f1 33.56%, #00e0ff 111.25%);
+      color: #fff;
+    }
+  }
+}
