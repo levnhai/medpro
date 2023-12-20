@@ -1,6 +1,5 @@
-import classNames from 'classnames/bind';
 import React from 'react';
-
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
@@ -13,13 +12,19 @@ import {
   DownIcon,
   AccountIcon,
 } from '~/components/Icon';
-import style from './Header.module.scss';
 
+import style from './Header.module.scss';
 import Button from '~/components/Button';
 
+import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
 
 function Header() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
+
+  const handleShowModalProfile = () => {};
+
   return (
     <div className={cx('header')}>
       <div className={cx('header_wrapper')}>
@@ -66,8 +71,14 @@ function Header() {
                 </Button>
               </div>
               <div>
-                <Button rounded leftIcon={<AccountIcon />} className={cx('header_accountBtn')}>
-                  Tài khoản
+                <Button
+                  to={isLoggedIn ? '' : '/check-phone'}
+                  rounded
+                  leftIcon={<AccountIcon />}
+                  className={cx('header_accountBtn')}
+                  onClick={handleShowModalProfile}
+                >
+                  {isLoggedIn ? `${user.firstName} ${user.lastName}` : 'Tài khoản'}
                 </Button>
               </div>
             </div>

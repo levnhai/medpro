@@ -224,3 +224,12 @@
     color: var(--blue-color);
   }
 }
+
+.modal {
+  height: 1000px;
+  width: 1000px;
+  background-color:red;
+  position: relative;
+  top: 0;
+  right: 0;   
+}

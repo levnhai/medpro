@@ -36,7 +36,3 @@
 .react-tabs__tab-panel {
   flex: 3;
 }
-
-.collapse__content {
-  display: none;
-}
