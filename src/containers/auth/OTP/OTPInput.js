@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 import Button from '~/components/Button';
 import './OTPInput.scss';
 import '../auth.scss';
+
 function OtpInput() {
   const [otpInput, setOtpInput] = useState('');
+
   const location = useLocation();
   const navigate = useNavigate();
+
   const randomOtp = location.state.randomOtp;
+  const isphoneNumber = useSelector((state) => state.auth.phoneNumber);
+
   // show modal resend code
   useEffect(() => {
     const collapseModal = document.querySelector('.collapse');
@@ -65,7 +72,6 @@ function OtpInput() {
           previousInput.focus();
         }
       }
-      inputSendCode[currentInputIndex].addAttribute('disabled');
     }
 
     function getOTP() {
@@ -92,14 +98,15 @@ function OtpInput() {
     window.addEventListener('load', () => {
       inputSendCode[0].focus();
     });
-  }, []);
+    // }, []);
+  });
 
   const handleverifyOtp = () => {
     if (otpInput === randomOtp) {
       console.log('thành công');
-      navigate('/');
+      navigate('/register-account');
     } else {
-      console.log('thất bại');
+      toast.error('Nhập otp không chính xác');
     }
   };
 
@@ -124,7 +131,7 @@ function OtpInput() {
               <h4 className="tag--header">XIN CHÀO!</h4>
               <p className="customFotnSize">Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.</p>
               <div className="tel-input">
-                <input className="form-control disable-form" value={location.state.phoneNumber} disabled />
+                <input className="form-control disable-form" value={isphoneNumber} disabled />
                 <div className="selected-flag">
                   <img
                     src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
@@ -166,7 +173,7 @@ function OtpInput() {
                     <p className="collapse--title">Nếu bạn không nhận được mã: </p>
                     <p className="collapse--des">
                       <i class="fa-solid fa-mobile-screen-button"></i>
-                      Xác minh số điện thoại của bạn: <strong>{location.state.phoneNumber}</strong>
+                      Xác minh số điện thoại của bạn: <strong>{isphoneNumber}</strong>
                     </p>
                     <p className="collapse--des">
                       <i class="fa-solid fa-comment-sms"></i>

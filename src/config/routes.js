@@ -10,7 +10,7 @@ const routes = {
   login: '/login',
   checkPhone: '/check-phone',
   otpInput: '/otp-input',
-  createAccount: 'create-account',
+  RegisterAccount: 'register-account',
   login: '/login',
 };
 export default routes;

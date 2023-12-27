@@ -1,12 +1,16 @@
 import Button from '~/components/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import userServise from '~/services/userServices';
 import './checkPhone.scss';
 import '../auth.scss';
+import { phoneNumber as phone } from '~/redux/user/authSlide';
 
 function CheckPhone() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [messageError, setMessageError] = useState('');
 
@@ -14,7 +18,13 @@ function CheckPhone() {
   const handleOnChangePhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
   };
-  const navigate = useNavigate();
+
+  // is valis phone number in vietnam
+  const regexPhoneNumber = (phone) => {
+    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
+
+    return phone.match(regexPhoneNumber) ? true : false;
+  };
 
   const handleLogin = async () => {
     // e.preventDefault();
@@ -22,20 +32,33 @@ function CheckPhone() {
       if (!phoneNumber) {
         return setMessageError('Vui lòng nhập số điện thoại!');
       }
+      if (!regexPhoneNumber(phoneNumber)) {
+        return setMessageError('Vui lòng nhập đúng định dạng !');
+      } else {
+        let userData = await userServise.handleCheckPhone(phoneNumber);
+        // console.log('userData', userData);
+        dispatch(phone(phoneNumber));
 
-      let userData = await userServise.handleCheckPhone(phoneNumber);
-
-      if (userData && userData.errCode === 0) {
-        navigate('/login', { state: { userData: userData.user } });
-      } else if (userData && userData.errCode === 1) {
-        let randomOtp = await userServise.handleRandomOtp();
-        console.log(randomOtp);
-        navigate('/otp-input', { state: { phoneNumber, randomOtp: randomOtp.otpInput } });
+        if (userData.status === true && userData.errCode === 0) {
+          // navigate('/login', { state: { phoneNumber } });
+          navigate('/login');
+        } else if (userData.status === false && userData.errCode === 1) {
+          let randomOtp = await userServise.handleRandomOtp();
+          console.log(randomOtp);
+          navigate('/otp-input', { state: { randomOtp: randomOtp.otpInput } });
+        }
       }
     } catch (error) {
       console.log('lỗi r bạn ơi ');
     }
   };
+
+  // inputElement.addEventListener('keydown', (e) => {
+  //   console.log(1);
+  //   if (e.keyCode === 13) {
+  //     handleLogin();
+  //   }
+  // });
 
   return (
     <div className="authenticate">
@@ -79,7 +102,6 @@ function CheckPhone() {
               onClick={() => {
                 handleLogin();
               }}
-              navigatio
             >
               Tiếp tục
             </Button>

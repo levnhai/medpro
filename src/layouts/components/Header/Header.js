@@ -22,6 +22,7 @@ const cx = classNames.bind(style);
 function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
+  console.log(user);
 
   const handleShowModalProfile = () => {};
 
@@ -78,7 +79,7 @@ function Header() {
                   className={cx('header_accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn ? `${user.firstName} ${user.lastName}` : 'Tài khoản'}
+                  {isLoggedIn ? `${user.userData.fullName}` : 'Tài khoản'}
                 </Button>
               </div>
             </div>

@@ -1,22 +1,25 @@
-import Button from '~/components/Button';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { loginUser } from '~/redux/user/authSlide';
+
+import Button from '~/components/Button';
+import userServise from '~/services/userServices';
 
 import './login.scss';
 import '../auth.scss';
 
-function CheckPhone() {
+function Login() {
+  const isphone = useSelector((state) => state.auth.phoneNumber);
+  console.log(isphone);
+
   const dispatch = useDispatch();
-  const location = useLocation();
   const navigator = useNavigate();
-  const userData = location.state.userData;
+
   const [password, setPassword] = useState('');
   const [messageError, setMessageError] = useState('');
   const [passwordShowHide, setPasswordShowHide] = useState(false);
-
-  console.log(userData);
 
   // handle action
   const handleOnChangePassword = (e) => {
@@ -24,26 +27,35 @@ function CheckPhone() {
     setMessageError('');
   };
 
+  const handleShowHidePassword = () => {
+    setPasswordShowHide(!passwordShowHide);
+  };
+
   const handleLogin = async () => {
     // e.preventDefault();
     try {
       if (!password) {
-        setMessageError('Vui lòng nhập mật khẩu đăng nhập');
+        return setMessageError('Vui lòng nhập mật khẩu đăng nhập');
       }
-      if (userData.password === password) {
+
+      let userData = await userServise.handleLogin(isphone, password);
+      console.log('user data', userData);
+      if (userData.errCode === 0 && userData.status === true) {
         navigator('/');
         dispatch(loginUser(userData));
       } else {
-        setMessageError('Thông tin đăng nhập k chính xác');
+        toast.error('Thông tin đăng nhập không chính xác');
       }
     } catch (error) {
       console.log('lỗi r bạn ơi ');
     }
   };
 
-  const handleShowHidePassword = () => {
-    setPasswordShowHide(!passwordShowHide);
-  };
+  // document.addEventListener('keydown', (e) => {
+  //   if (e.keyCode === 13) {
+  //     handleLogin();
+  //   }
+  // });
 
   return (
     <div className="authenticate">
@@ -64,7 +76,7 @@ function CheckPhone() {
           <div className="checkPhone--wrapper__body">
             <p className="text-center">Vui lòng đăng nhập để tiếp tục</p>
             <div className="tel-input">
-              <input className="form-control disable-form" value={userData.phoneNumber} disabled />
+              <input className="form-control disable-form" value={isphone} disabled />
               <div className="selected-flag">
                 <img
                   src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
@@ -96,7 +108,6 @@ function CheckPhone() {
               onClick={() => {
                 handleLogin();
               }}
-              navigatio
             >
               Tiếp tục
             </Button>
@@ -116,4 +127,4 @@ function CheckPhone() {
   );
 }
 
-export default CheckPhone;
+export default Login;
