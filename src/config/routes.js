@@ -6,11 +6,16 @@ const routes = {
   question: '/huong-dan/cau-hoi-thuong-gap',
   appointment: '/huong-dan/dat-lich-kham',
   facilitie: 'co-so-y-te',
-  admin: 'system/admin',
   login: '/login',
   checkPhone: '/check-phone',
   otpInput: '/otp-input',
   RegisterAccount: 'register-account',
-  login: '/login',
+
+  // Admin
+  dashboard: '/system',
+  userManage: '/system/user-manage',
+  docterManage: '/system/docter-manage',
+  clinicManage: '/system/clinic-manage',
+  notFound: '*',
 };
 export default routes;

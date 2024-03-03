@@ -492,13 +492,13 @@ export const EyeIcon = ({ width = '6.1rem', height = '4.9rem', className }) => (
       d="M31.7704 2.9165H29.7296C17.1833 2.9165 6.24701 11.1556 3.20409 22.9002C2.93197 23.9505 2.93197 25.0492 3.20409 26.0995C6.24701 37.844 17.1833 46.0832 29.7296 46.0832H31.7704C44.3167 46.0832 55.253 37.844 58.2959 26.0995C58.568 25.0492 58.568 23.9505 58.2959 22.9002C55.253 11.1556 44.3167 2.9165 31.7704 2.9165Z"
       stroke="url(#paint0_linear_259_27079)"
       strokeWidth="5"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     />
     <path
       d="M30.75 34.043C36.2122 34.043 40.6402 29.7704 40.6402 24.4998C40.6402 19.2293 36.2122 14.9567 30.75 14.9567C25.2878 14.9567 20.8598 19.2293 20.8598 24.4998C20.8598 29.7704 25.2878 34.043 30.75 34.043Z"
       stroke="url(#paint1_linear_259_27079)"
       strokeWidth="5"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     />
     <defs>
       <linearGradient
@@ -565,7 +565,7 @@ export const DocterServiceIcon = ({ width = '6rem', height = '6rem', className }
     viewBox="0 0 722 723"
     fill="none"
   >
-    <g clip-path="url(#clip0_3306_15460)">
+    <g clipPath="url(#clip0_3306_15460)">
       <path
         d="M717.297 361.557C717.297 558.387 557.735 717.95 360.904 717.95C164.074 717.95 4.5113 558.387 4.5113 361.557C4.5113 164.727 164.074 5.16413 360.904 5.16413C557.735 5.16413 717.297 164.727 717.297 361.557Z"
         fill="url(#paint0_linear_3306_15460)"
@@ -661,28 +661,28 @@ export const DocterServiceIcon = ({ width = '6rem', height = '6rem', className }
   </svg>
 );
 
-export const seeMoreIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+export const SeeMoreIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 16 16" fill="none">
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M2.93972 13.1808C2.62608 12.9408 2.57523 12.5031 2.82614 12.2031L6.34145 7.99998L2.82614 3.79689C2.57523 3.49688 2.62608 3.05912 2.93972 2.81911C3.25337 2.57911 3.71103 2.62775 3.96195 2.92775L7.84072 7.56541C8.05321 7.81948 8.05321 8.18048 7.84072 8.43455L3.96195 13.0722C3.71103 13.3722 3.25337 13.4209 2.93972 13.1808Z"
       fill="white"
       stroke="white"
       strokeWidth="0.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       opacity="0.4"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M8.93972 13.1808C8.62608 12.9408 8.57523 12.5031 8.82614 12.2031L12.3415 7.99998L8.82614 3.79689C8.57523 3.49688 8.62608 3.05912 8.93972 2.81911C9.25337 2.57911 9.71103 2.62775 9.96195 2.92775L13.8407 7.56541C14.0532 7.81948 14.0532 8.18048 13.8407 8.43455L9.96195 13.0722C9.71103 13.3722 9.25337 13.4209 8.93972 13.1808Z"
       fill="white"
       stroke="white"
       strokeWidth="0.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -1334,7 +1334,7 @@ export const ArowServicesRightIcon = ({ width = '2rem', height = '2rem', classNa
     color="#003553"
     height={height}
     width={width}
-    class={className}
+    className={className}
     // xmlns="
     // http:style="color: rgb(0, 53, 83);" //www.w3.org/2000/svg"
     style={{ position: 'absolute' }}
@@ -1392,7 +1392,7 @@ export const CollapseExpand = ({ width = '1rem', height = '1rem', className }) =
     height={height}
     className={className}
     fill="currentColor"
-    aria-hidden="true"
+    ariaHidden="true"
   >
     <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
   </svg>
@@ -1441,6 +1441,39 @@ export const Location = ({ width = '2rem', height = '2rem', className }) => (
       strokeWidth="2"
       d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
     ></path>
-    <path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
   </svg>
 );
+
+export const ModalProfileBookIcon = ({ width = '1,8rem', height = '1,8rem' }) => {
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    strokeWidth="0"
+    viewBox="0 0 24 24"
+    color="#003553"
+    height="18"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g>
+      <path fill="none" d="M0 0H24V24H0z"></path>
+      <path d="M20 2c.552 0 1 .448 1 1v18c0 .552-.448 1-1 1H6c-.552 0-1-.448-1-1v-2H3v-2h2v-2H3v-2h2v-2H3V9h2V7H3V5h2V3c0-.552.448-1 1-1h14zm-1 2H7v16h12V4zm-5 4v3h3v2h-3.001L14 16h-2l-.001-3H9v-2h3V8h2z"></path>
+    </g>
+  </svg>;
+};
+
+export const NotificationIcon = ({ width = '1,8rem', height = '1,8rem' }) => {
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    stroke-width="0"
+    viewBox="0 0 448 512"
+    color="#003553"
+    height={height}
+    width={width}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M439.39 362.29c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71zM67.53 368c21.22-27.97 44.42-74.33 44.53-159.42 0-.2-.06-.38-.06-.58 0-61.86 50.14-112 112-112s112 50.14 112 112c0 .2-.06.38-.06.58.11 85.1 23.31 131.46 44.53 159.42H67.53zM224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64z"></path>
+  </svg>;
+};
