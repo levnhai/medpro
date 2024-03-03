@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import {
   TiktokIcon,
@@ -15,34 +16,86 @@ import {
 
 import style from './Header.module.scss';
 import Button from '~/components/Button';
+import { logoutUser } from '~/redux/user/authSlide';
 
 import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
 
 function Header() {
+  const modalRef = useRef(null);
+  const btnLoginRef = useRef(null);
+
+  const [showModal, setShowModal] = useState(false);
+  const [shortName, setShortName] = useState('');
+
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
 
-  const handleShowModalProfile = () => {};
+  // bắt sự kiện click show modal
+  const handleShowModalProfile = () => {
+    if (isLoggedIn) {
+      setShowModal(!showModal);
+    }
+  };
+
+  // rút gọn name
+  const handleshortName = () => {
+    let fullName = isLoggedIn && user && `${user.userData.fullName}`;
+    if (isLoggedIn && fullName) {
+      let nameParts = fullName.split(' ');
+      let shortName = '';
+      if (nameParts.length > 1) {
+        shortName = nameParts[nameParts.length - 2] + ' ' + nameParts[nameParts.length - 1];
+      } else {
+        shortName = nameParts[0];
+      }
+      setShortName(shortName);
+    }
+  };
+
+  // bắt sự kiện click ra ngoài modal profile
+  const handleClickOusideModal = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target) && !btnLoginRef.current.contains(e.target)) {
+      setShowModal(false);
+    }
+  };
+
+  // // bắt sự kiện cuộn chuôt => ch thành công
+  // const handleScroll = () => {
+  //   const scrollTop = window.pageYOffset;
+  //   console.log(scrollTop);
+  //   if (scrollTop && scrollTop >= 50) {
+  //     setIsScroll(false);
+  //   } else {
+  //     setIsScroll(true);
+  //   }
+  // };
+
+  useEffect(() => {
+    //
+    handleshortName();
+
+    document.addEventListener('click', handleClickOusideModal);
+    // document.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('click', handleClickOusideModal);
+      // document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className={cx('header')}>
-      <div className={cx('header_wrapper')}>
-        <div className={cx('header_logo')}>
-          <Link to="/">
-            <LogoIcon className={cx('logoIcon')} />
-          </Link>
+      <div className={cx('header-wapper')}>
+        <div className={cx('logo')}>
+          <a href="/">
+            <LogoIcon className={cx('icon')} />
+          </a>
         </div>
-        <div className={cx('header_body')}>
-          <div className={cx('header_topNavbar')}>
-            <div className={cx('header_social')}>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.tiktok.com/@medprovn/"
-                className={cx('header_social_item')}
-              >
+        <div className={cx('body')}>
+          <div className={cx('topNavbar')}>
+            <div className={cx('social')}>
+              <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@medprovn/" className={cx('item')}>
                 <TiktokIcon />
                 Tiktok
               </a>
@@ -50,56 +103,110 @@ function Header() {
                 target="_blank"
                 rel="noreferrer"
                 href="https://www.youtube.com/@medpro-atlichkhambenh1543"
-                className={cx('header_social_item')}
+                className={cx('item')}
               >
                 <YoutubeIcon />
                 Youtube
               </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.facebook.com/www.medpro.vn"
-                className={cx('header_social_item')}
-              >
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/www.medpro.vn" className={cx('item')}>
                 <FacebookIcon />
                 Facebook
               </a>
             </div>
-            <div className={cx('header_btn')}>
+            <div className={cx('groupBtn')}>
               <div>
-                <Button href="/#downloadBtn" rounded leftIcon={<DownIcon />} className={cx('header_donwloadBtn')}>
+                <Button href="/#downloadBtn" rounded leftIcon={<DownIcon />} className={cx('donwloadBtn')}>
                   Tải ứng dụng
                 </Button>
               </div>
-              <div>
+              <div ref={btnLoginRef}>
                 <Button
-                  to={isLoggedIn ? '' : '/check-phone'}
+                  to={isLoggedIn ? '#' : '/check-phone'}
                   rounded
                   leftIcon={<AccountIcon />}
-                  className={cx('header_accountBtn')}
+                  className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn ? `${user.userData.fullName}` : 'Tài khoản'}
+                  {isLoggedIn && `${user.userData.fullName}` ? shortName : 'Tài khoản'}
                 </Button>
               </div>
             </div>
+            {showModal && (
+              <div ref={modalRef} className={cx('modal')}>
+                <div className={cx('modal-profile')}>
+                  <div className={cx('profile-header')}>
+                    <div className={cx('profile-avata')}></div>
+                    <div className={cx('profile-info')}>
+                      <span> Xin chào </span>
+                      <h5> {`${user.userData.fullName}`}</h5>
+                    </div>
+                  </div>
+                  <ul className={cx('information-list')}>
+                    <li className={cx('information-item')}>
+                      <div>
+                        <span className={cx('icon')}>
+                          <AccountIcon />
+                        </span>
+                        <span className={cx('title')}>Hồ sơ bệnh nhân</span>
+                      </div>
+                    </li>
+                    <li className={cx('information-item')}>
+                      <div>
+                        <span className={cx('icon')}>
+                          <i className="fa-regular fa-note-sticky"></i>
+                        </span>
+                        <span className={cx('title')}>Phiếu khám bệnh</span>
+                      </div>
+                    </li>
+                    <li className={cx('information-item')}>
+                      <div>
+                        <span className={cx('icon')}>
+                          <i className="fa-regular fa-bell"></i>
+                        </span>
+                        <span className={cx('title')}>Thông báo</span>
+                      </div>
+                    </li>
+                    <li className={cx('information-item')}>
+                      <div
+                        onClick={() => {
+                          dispatch(logoutUser());
+                          setShowModal(false);
+                          toast.success('Đăng xuất thành công');
+                        }}
+                      >
+                        <span className={cx('icon')}>
+                          <i className="fa-solid fa-right-from-bracket"></i>
+                        </span>
+                        <span className={cx('title')}>Đăng xuất</span>
+                      </div>
+                    </li>
+                    <li className={cx('information-item')} disabled>
+                      <div>
+                        <span>Câp nhật mới nhất: 29/12/2023</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
+
           <div className={cx('header_menu')}>
             <a href="tel:0915948664">
-              <div className={cx('header_support')}>
-                <div className={cx('header_suportIcon')}>
+              <div className={cx('support')}>
+                <div className={cx('suportIcon')}>
                   <SupportIcon />
                 </div>
-                <div className={cx('header_suportTitle')}>
+                <div className={cx('suportTitle')}>
                   Hổ trợ đặt khám
                   <div>1900 1211</div>
                 </div>
               </div>
             </a>
-            <div className={cx('header_navbar')}>
-              <ul className={cx('header_navbarList')}>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/co-so-y-te">
+            <div className={cx('navbar')}>
+              <ul className={cx('navbarList')}>
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/co-so-y-te">
                     Cở sở ý tế
                   </Link>
                   <span>
@@ -130,8 +237,8 @@ function Header() {
                     </ul>
                   </div>
                 </li>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/">
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/">
                     Dịch vụ y tế
                   </Link>
                   <span>
@@ -172,13 +279,13 @@ function Header() {
                     </ul>
                   </div>
                 </li>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/about">
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/about">
                     Gói khám
                   </Link>
                 </li>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/huong-dan/cai-dat-ung-dung">
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/huong-dan/cai-dat-ung-dung">
                     Hướng dẫn
                   </Link>
                   <span>
@@ -209,8 +316,8 @@ function Header() {
                     </ul>
                   </div>
                 </li>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/">
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/">
                     Tin tức
                   </Link>
                   <span>
@@ -236,13 +343,30 @@ function Header() {
                     </ul>
                   </div>
                 </li>
-                <li className={cx('header_navbarItem')}>
-                  <Link className={cx('header_navbarLink')} to="/about">
+                <li className={cx('navbarItem')}>
+                  <Link className={cx('navbarLink')} to="/about">
                     Về chúng tôi
                   </Link>
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className={cx('newMobileHeader')}>
+        <div className={cx('mobile-HeaderBar')}>
+          <div className={cx('logo')}>
+            <Link to="/">
+              <LogoIcon className={cx('logoIcon')} />
+            </Link>
+          </div>
+          <div className={cx('btn_mobileHeader')}>
+            <Button rounded>
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </Button>
+            <Button rounded>
+              <i className="fa-solid fa-bars"></i>
+            </Button>
           </div>
         </div>
       </div>
