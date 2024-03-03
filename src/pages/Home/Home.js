@@ -14,6 +14,7 @@ import {
   HealthIcon,
   EyeIcon,
   ArowIcon,
+  SeeMoreIcon,
 } from '~/components/Icon';
 
 import style from './Home.module.scss';
@@ -374,9 +375,9 @@ function Home() {
             height="415"
             src="https://www.youtube.com/embed/zfmhCJgWx8Y?si=QLz1NFw-RFvjrFqO"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
             className={cx('media_video')}
           ></iframe>
         </div>
@@ -421,7 +422,7 @@ function Home() {
           </div>
         </div>
         <div className={cx('new_viewMore')}>
-          <Button rounded rightIcon={<seeMoreIcon />}>
+          <Button rounded rightIcon={<SeeMoreIcon />}>
             Xem thêm
           </Button>
         </div>

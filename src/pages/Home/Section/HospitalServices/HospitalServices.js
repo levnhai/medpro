@@ -25,13 +25,13 @@ function HospitalServices() {
   return (
     <div className="home_listHospital">
       <Slider {...settings}>
-        {HospitalData.map((hopital) => {
+        {HospitalData.map((hopital, index) => {
           return (
             <div className="hopital_sliderItem">
-              <a href={hopital.link} rel="noreferrer" target="_blank">
+              <a href={hopital.link} key={index} rel="noreferrer" target="_blank">
                 <div className="hopital_card">
                   <div className="hopital_cardImage">
-                    <img src={hopital.image} alt="" className="sliderItem_img" />
+                    <img src={hopital.image} key={index} alt="" className="sliderItem_img" />
                   </div>
                   <Button className="sliderItem_btn" rounded>
                     {hopital.name}
