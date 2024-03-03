@@ -13,24 +13,29 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function Question() {
-  // show hide modal
   useEffect(() => {
-    const collapseElements = document.querySelectorAll(`.${cx('collapse__item')}`);
-    console.log(collapseElements.length);
-    console.log(collapseElements);
-    for (const collapseElement of collapseElements) {
-      const collapse = collapseElement.querySelector(`.${cx('collapse__content')}`);
-      collapseElement.addEventListener('click', () => {
-        console.log('showw');
-        collapse.classList.toggle(cx('showHideModal'));
+    const collapseItemElement = document.querySelectorAll(`.${cx('collapse__header')}`);
+    console.log(collapseItemElement);
+    for (var i = 0; i < collapseItemElement.length; i++) {
+      collapseItemElement[i].addEventListener('click', (e) => {
+        e.target.classList.toggle(`${cx('active')}`);
+        const collapseItemContent = e.target.nextElementSibling;
+
+        if (collapseItemContent.style.display === 'none') {
+          collapseItemContent.style.display = 'block';
+
+          collapseItemContent.style.maxHeight = collapseItemContent.scrollHeight + 'px';
+        } else {
+          collapseItemContent.style.display = 'none';
+          collapseItemContent.style.maxHeight = null;
+        }
       });
     }
   }, []);
-
   return (
     <div className={cx('guide_question')}>
       <Header />
-      <div className={cx('question__container')}>
+      <div className={cx('container')}>
         <div className={cx('list__question')}>
           <div className={cx('tabs__wrap')}>
             <Tabs className={cx('tabs__list')} defaultIndex={0}>
