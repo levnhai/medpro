@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import userServise from '~/services/userServices';
-import { toast } from 'react-toastify';
 
-import className from 'classnames/bind';
-import styles from './Modal.module.scss';
+import Lightbox from 'react-image-lightbox';
+
+import userServise from '~/services/userServices';
 import { adminServices } from '~/services';
 import { ConvertBase64 } from '~/utils/common';
+import { toast } from 'react-toastify';
+
+import styles from './Modal.module.scss';
+import className from 'classnames/bind';
+import 'react-image-lightbox/style.css';
 
 const cx = className.bind(styles);
 
 function CreateDocter({ setShowModalCreate, getAllUser }) {
-  const [selectedFile, setSelectedFile] = useState();
-  const [preview, setPreview] = useState();
+  const [previewImageURL, setpreViewImageURL] = useState();
+  const [isOpenImage, setIsOpenImage] = useState();
   const [formData, setFormData] = useState({
     email: '',
     fullName: '',
@@ -102,33 +106,27 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
     }
   };
 
-  const onSelectFile = async (e) => {
+  const handleOnChangeImage = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       // setSelectedFile(undefined);
       return;
     }
     console.log('thay đổi');
     let file = e.target.files[0];
-    const urlBase64 = await ConvertBase64(file);
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      console.log(objectURL);
+      setpreViewImageURL(objectURL);
+    }
 
+    const urlBase64 = await ConvertBase64(file);
     setFormData({ ...formData, image: urlBase64 });
   };
 
-  console.log(formData.image);
-
-  // // create a preview as a side effect, whenever selected file is changed
-  // useEffect(() => {
-  //   if (!selectedFile) {
-  //     setPreview(undefined);
-  //     return;
-  //   }
-
-  //   const objectUrl = URL.createObjectURL(selectedFile);
-  //   setPreview(objectUrl);
-
-  //   // free memory when ever this component is unmounted
-  //   return () => URL.revokeObjectURL(objectUrl);
-  // }, [selectedFile]);
+  const handleOpenImage = () => {
+    if (!previewImageURL) return;
+    setIsOpenImage(true);
+  };
 
   return (
     <>
@@ -275,22 +273,24 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
               </div>
               <div className={cx('input--item')}>
                 <div>
-                  {/* <label className={cx('label-image')} for="upload-image">
+                  <label className={cx('label-uploadImage')} for="upload-image">
                     Upload image
-                  </label> */}
+                  </label>
                   <input
-                    className={cx('customInput', 'upload-image')}
+                    className={cx('customInput')}
                     id="upload-image"
                     accept="image/*"
-                    onChange={onSelectFile}
+                    onChange={handleOnChangeImage}
                     type="file"
                     name="image"
+                    hidden
                   ></input>
-                  <image
-                    id="avata"
-                    src="https://cdn.nguyenkimmall.com/images/companies/_1/tin-tuc/kinh-nghiem-meo-hay/C%C3%B4ng%20ngh%E1%BB%87/4-cach-chup-anh-dep.jpg"
-                    alt="your image"
-                  />
+                  <div
+                    className={cx('upload-image')}
+                    onClick={handleOpenImage}
+                    style={{ backgroundImage: `url(${previewImageURL})` }}
+                  ></div>
+                  {isOpenImage && <Lightbox mainSrc={previewImageURL} onCloseRequest={() => setIsOpenImage(false)} />}
                 </div>
               </div>
             </div>
