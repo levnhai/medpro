@@ -108,14 +108,11 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
 
   const handleOnChangeImage = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
-      // setSelectedFile(undefined);
       return;
     }
-    console.log('thay đổi');
     let file = e.target.files[0];
     if (file) {
       const objectURL = URL.createObjectURL(file);
-      console.log(objectURL);
       setpreViewImageURL(objectURL);
     }
 
@@ -273,7 +270,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
               </div>
               <div className={cx('input--item')}>
                 <div>
-                  <label className={cx('label-uploadImage')} for="upload-image">
+                  <label className={cx('label-uploadImage')} htmlFor="upload-image">
                     Upload image
                   </label>
                   <input
@@ -285,11 +282,15 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     name="image"
                     hidden
                   ></input>
-                  <div
-                    className={cx('upload-image')}
-                    onClick={handleOpenImage}
-                    style={{ backgroundImage: `url(${previewImageURL})` }}
-                  ></div>
+                  {previewImageURL ? (
+                    <div
+                      className={cx('upload-image')}
+                      onClick={handleOpenImage}
+                      style={{ backgroundImage: `url(${previewImageURL})` }}
+                    ></div>
+                  ) : (
+                    ''
+                  )}
                   {isOpenImage && <Lightbox mainSrc={previewImageURL} onCloseRequest={() => setIsOpenImage(false)} />}
                 </div>
               </div>

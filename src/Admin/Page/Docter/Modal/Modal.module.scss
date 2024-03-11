@@ -101,12 +101,12 @@
 }
 
 .upload-image {
-  border: 1px solid #333;
   min-width: 200px;
   height: 100px;
   background-image: center center no-repeat;
   background-size: contain;
   cursor: pointer;
+  box-shadow: 10px 10px 5px #ccc;
 }
 
 .text--danger {

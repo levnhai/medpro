@@ -75,7 +75,7 @@ function About() {
                 </div>
               </div>
               <div className={cx('introduce_right')}>
-                <div className={cx('introduce_rightImage')}></div>
+                <div className={cx('introduce_rightImage')}> </div>
               </div>
             </div>
             <div className={cx('introduct_culture')}>

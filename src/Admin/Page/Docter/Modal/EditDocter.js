@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import adminServise from '~/services/adminServices';
 import { toast } from 'react-toastify';
+import Lightbox from 'react-image-lightbox';
+import { Buffer } from 'buffer';
+
+import { ConvertBase64 } from '~/utils/common';
+
+import adminServise from '~/services/adminServices';
 
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
@@ -9,7 +14,9 @@ import styles from './Modal.module.scss';
 const cx = className.bind(styles);
 
 function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
-  const [isvalidateForm, setIsValidateForm] = useState(false);
+  const [imageData, setImageData] = useState(null);
+  const [previewImageURL, setpreViewImageURL] = useState();
+  const [isOpenImage, setIsOpenImage] = useState();
   const [formData, setFormData] = useState({
     id: `${docterData._id}`,
     phoneNumber: `0${docterData.phoneNumber}`,
@@ -19,6 +26,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     gender: `${docterData.gender}`,
     roleId: `${docterData.roleId}`,
     positionId: `${docterData.positionId}`,
+    image: imageData,
   });
 
   const [messagesError, setMessageError] = useState({
@@ -39,6 +47,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     setMessageError({});
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   // is valis phone number in vietnam
   const regexPhoneNumber = (phone) => {
     const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
@@ -73,7 +82,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
   };
   // handle onClick submit btn edit User
   const handleSubmitEditDocter = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       let validationError = validateForm();
       console.log(validationError);
@@ -92,6 +101,30 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
       console.log(error);
     }
   };
+  const handleOnChangeImage = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    let file = e.target.files[0];
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      const urlBase64 = await ConvertBase64(file);
+      setpreViewImageURL(objectURL);
+      setImageData(urlBase64);
+      setFormData({ ...formData, image: urlBase64 });
+    }
+  };
+
+  const handleOpenImage = () => {
+    setpreViewImageURL(imageData);
+    if (!previewImageURL) return;
+    setIsOpenImage(true);
+  };
+
+  useEffect(() => {
+    const base64String = Buffer.from(docterData.image.data, 'base64').toString('binary');
+    setImageData(base64String);
+  }, []);
 
   return (
     <>
@@ -209,9 +242,6 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
                   </select>
                   <small className={cx('text--danger')}>{messagesError.positionId}</small>
                 </div>
-                <input className={cx('customInput')} type="file"></input>
-              </div>
-              <div className={cx('input--item')}>
                 <div>
                   <select onChange={handleOnchange} value={formData.roleId} className={cx('customInput')} name="roleId">
                     <option name="roleId" value="Bác sỹ">
@@ -225,6 +255,31 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
                     </option>
                   </select>
                   <small className={cx('text--danger')}>{messagesError.roleId}</small>
+                </div>
+              </div>
+              <div className={cx('input--item')}>
+                <div>
+                  <label className={cx('label-uploadImage')} htmlFor="upload-image">
+                    Upload image
+                  </label>
+                  <input
+                    className={cx('customInput')}
+                    id="upload-image"
+                    accept="image/*"
+                    onChange={handleOnChangeImage}
+                    type="file"
+                    name="image"
+                    hidden
+                  ></input>
+                  {imageData && (
+                    <div
+                      className={cx('upload-image')}
+                      onClick={handleOpenImage}
+                      style={{ backgroundImage: `url(${imageData})` }}
+                      alt="Image "
+                    />
+                  )}
+                  {isOpenImage && <Lightbox mainSrc={previewImageURL} onCloseRequest={() => setIsOpenImage(false)} />}
                 </div>
               </div>
             </div>

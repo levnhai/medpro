@@ -192,8 +192,8 @@ function Home() {
             <div>
               <a href="https://apps.apple.com/us/app/id1481561748" target="_blank" rel="noopener noreferrer">
                 <img
-                  src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ficon_ios.svg.d91e06b8.png&w=256&q=75"
-                  alt=""
+                  src="https://www.appsessment.com/img/apple_app_store.png"
+                  alt="download-btnIOs"
                   className={cx('download_btn')}
                 />
               </a>
@@ -205,8 +205,8 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ficon_google_play.svg.0828ded3.png&w=256&q=75"
-                  alt=""
+                  src="https://www.appsessment.com/img/google_play_store.png"
+                  alt="download-btnGooglePlay"
                   className={cx('download_btn')}
                 />
               </a>
@@ -247,8 +247,7 @@ function Home() {
                   <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
                   <div className={cx('service_des')}>
                     <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
+                    <p> Theo bác sĩ chuyên khoa</p>x<p>Tái khám theo lịch hẹn</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
