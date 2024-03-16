@@ -9,8 +9,9 @@ import styles from './Modal.module.scss';
 const cx = className.bind(styles);
 
 function DeleteDocter({ setShowModalDelete, deleteDocterId, handleGetAllDocter }) {
-  const handleBtnDeleteUser = async (deleteDocterId) => {
-    const docter = await adminServices.deleteDocter(deleteDocterId);
+  const handleBtnDeleteDocter = async (deleteById) => {
+    const docter = await adminServices.deleteUser(deleteById);
+    console.log('docter', docter);
     if (docter) {
       setShowModalDelete(false);
       handleGetAllDocter();
@@ -38,7 +39,7 @@ function DeleteDocter({ setShowModalDelete, deleteDocterId, handleGetAllDocter }
               <button
                 className={cx('deleteBtn')}
                 onClick={() => {
-                  handleBtnDeleteUser(deleteDocterId);
+                  handleBtnDeleteDocter(deleteDocterId);
                 }}
               >
                 Delete User

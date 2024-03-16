@@ -19,14 +19,14 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
   const [isOpenImage, setIsOpenImage] = useState();
   const [formData, setFormData] = useState({
     id: `${docterData._id}`,
-    phoneNumber: `0${docterData.phoneNumber}`,
+    phoneNumber: `${docterData.phoneNumber}`,
     fullName: `${docterData.fullName}`,
     email: `${docterData.email}`,
     address: `${docterData.address}`,
     gender: `${docterData.gender}`,
     roleId: `${docterData.roleId}`,
     positionId: `${docterData.positionId}`,
-    image: imageData,
+    image: '',
   });
 
   const [messagesError, setMessageError] = useState({
@@ -87,14 +87,14 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
       let validationError = validateForm();
       console.log(validationError);
       if (validationError) {
-        let data = await adminServise.EditDocter(formData);
+        let data = await adminServise.editUser(formData);
         console.log('validationError', data);
-        if (data.data.errCode === 3) {
-          toast.warning(data.data.errMessage);
-        } else if (data.data.errCode === 0) {
-          setShowModalEdit(false);
+        if (data.data.errCode === 0) {
           getAllDocter();
+          setShowModalEdit(false);
           toast.success(data.data.errMessage);
+        } else {
+          toast.error(data.data.errMessage);
         }
       }
     } catch (error) {
@@ -105,11 +105,13 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
+    console.log('thanh cogn');
     let file = e.target.files[0];
     if (file) {
-      const objectURL = URL.createObjectURL(file);
+      // const objectURL = URL.createObjectURL(file);
       const urlBase64 = await ConvertBase64(file);
-      setpreViewImageURL(objectURL);
+      console.log('thành công 1', urlBase64);
+      // setpreViewImageURL(objectURL);
       setImageData(urlBase64);
       setFormData({ ...formData, image: urlBase64 });
     }
@@ -122,9 +124,13 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
   };
 
   useEffect(() => {
-    const base64String = Buffer.from(docterData.image.data, 'base64').toString('binary');
-    setImageData(base64String);
+    console.log(docterData.image);
+    if (docterData.image) {
+      const base64String = Buffer.from(docterData.image.data, 'base64').toString('binary');
+      setImageData(base64String);
+    }
   }, []);
+  console.log('formData', formData);
 
   return (
     <>

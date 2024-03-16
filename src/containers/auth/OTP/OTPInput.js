@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { redirect, useLocation, useNavigate, Redirect } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
 
 import Auth from '../Auth';
 import Button from '~/components/Button';
-import './OTPInput.scss'; 
+import './OTPInput.scss';
 
 function OtpInput() {
   const location = useLocation();

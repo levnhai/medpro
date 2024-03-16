@@ -12,7 +12,6 @@ function DeleteUser({ setShowModalDelete, deleteUserID, getAllUser }) {
   // xóa user theo id
 
   const handleBtnDeleteUser = async (deleteUserID) => {
-    console.log('delete user 1', deleteUserID);
     const user = await adminServices.deleteUser(deleteUserID);
     if (user) {
       console.log('user', user);

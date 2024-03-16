@@ -1,0 +1,83 @@
+.wapper {
+  width: 100%;
+  background: url('https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png') no-repeat center center;
+  background-size: cover;
+  padding-bottom: 50px;
+  margin-bottom: 30px;
+}
+.container {
+  margin: 0px 164px;
+}
+.header {
+  padding: 10px 0px 14px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.header-title {
+  font-weight: 600;
+  color: rgb(26, 26, 26);
+  font-size: 24px;
+}
+.header-seeMoreBtn {
+  background-color: rgb(218, 243, 246);
+  padding: 10px 8px;
+  border-radius: 16px;
+  cursor: pointer;
+
+  Button {
+    background: transparent;
+    padding: 4px 8px;
+    font-size: 20px;
+    color: rgb(52, 146, 158);
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: rgb(200, 240, 245);
+  }
+}
+.body {
+}
+.OutStanding-docter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.avata {
+  border-radius: 99999px;
+  width: 200px;
+}
+
+.position {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  div {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(17, 49, 53);
+  }
+  span {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    color: rgb(98, 98, 98);
+  }
+}

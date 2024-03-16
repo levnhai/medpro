@@ -50,7 +50,6 @@ function Login() {
       }
 
       let userData = await userServise.handleLogin(isphone, password);
-      console.log('user data', userData);
       if (userData.errCode === 0 && userData.status === true) {
         navigator('/');
         dispatch(loginUser(userData));

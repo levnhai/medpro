@@ -3,16 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import {
-  TiktokIcon,
-  YoutubeIcon,
-  FacebookIcon,
-  LogoIcon,
-  DropdownIcon,
-  SupportIcon,
-  DownIcon,
-  AccountIcon,
-} from '~/components/Icon';
+import { LogoIcon, SupportIcon } from '~/components/Icon';
+import { FaTiktok, FaFacebookF, FaYoutube } from 'react-icons/fa';
+import { MdOutlinePhoneAndroid } from 'react-icons/md';
+import { IoPersonSharp } from 'react-icons/io5';
+import { IoMdArrowDropdown } from 'react-icons/io';
 
 import style from './Header.module.scss';
 import Button from '~/components/Button';
@@ -96,7 +91,7 @@ function Header() {
           <div className={cx('topNavbar')}>
             <div className={cx('social')}>
               <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@medprovn/" className={cx('item')}>
-                <TiktokIcon />
+                <FaTiktok style={{ width: '1.6rem', height: '1.6rem' }} />
                 Tiktok
               </a>
               <a
@@ -105,17 +100,22 @@ function Header() {
                 href="https://www.youtube.com/@medpro-atlichkhambenh1543"
                 className={cx('item')}
               >
-                <YoutubeIcon />
+                <FaYoutube style={{ width: '1.6rem', height: '1.6rem' }} />
                 Youtube
               </a>
               <a target="_blank" rel="noreferrer" href="https://www.facebook.com/www.medpro.vn" className={cx('item')}>
-                <FacebookIcon />
+                <FaFacebookF style={{ width: '1.6rem', height: '1.6rem' }} />
                 Facebook
               </a>
             </div>
             <div className={cx('groupBtn')}>
               <div>
-                <Button href="/#downloadBtn" rounded leftIcon={<DownIcon />} className={cx('donwloadBtn')}>
+                <Button
+                  href="/#downloadBtn"
+                  rounded
+                  leftIcon={<MdOutlinePhoneAndroid style={{ width: '1.7rem', height: '1.7rem' }} />}
+                  className={cx('donwloadBtn')}
+                >
                   Tải ứng dụng
                 </Button>
               </div>
@@ -123,7 +123,7 @@ function Header() {
                 <Button
                   to={isLoggedIn ? '#' : '/check-phone'}
                   rounded
-                  leftIcon={<AccountIcon />}
+                  leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
@@ -145,7 +145,7 @@ function Header() {
                     <li className={cx('information-item')}>
                       <div>
                         <span className={cx('icon')}>
-                          <AccountIcon />
+                          <IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />
                         </span>
                         <span className={cx('title')}>Hồ sơ bệnh nhân</span>
                       </div>
@@ -210,7 +210,7 @@ function Header() {
                     Cở sở ý tế
                   </Link>
                   <span>
-                    <DropdownIcon />
+                    <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
                   </span>
                   <div className={cx('menu')}>
                     <ul>
@@ -242,7 +242,7 @@ function Header() {
                     Dịch vụ y tế
                   </Link>
                   <span>
-                    <DropdownIcon />
+                    <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
                   </span>
                   <div className={cx('menu')}>
                     <ul>
@@ -289,7 +289,7 @@ function Header() {
                     Hướng dẫn
                   </Link>
                   <span>
-                    <DropdownIcon />
+                    <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
                   </span>
                   <div className={cx('menu')}>
                     <ul>
@@ -321,7 +321,7 @@ function Header() {
                     Tin tức
                   </Link>
                   <span>
-                    <DropdownIcon />
+                    <IoMdArrowDropdown style={{ width: '1.5 rem', height: '1.5rem' }} />
                   </span>
                   <div className={cx('menu')}>
                     <ul>

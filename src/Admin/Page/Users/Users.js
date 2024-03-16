@@ -11,7 +11,7 @@ import styles from './Users.module.scss';
 const cx = classNames.bind(styles);
 
 function User() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState();
   const [deleteUserId, setDeleteUserId] = useState();
   const [editUser, setEditUser] = useState({});
   const [showModalCreate, setShowModalCreate] = useState(false);
@@ -20,10 +20,10 @@ function User() {
 
   // lấy tất cả user có trong database
   const handleGetAllUser = async () => {
-    const getAllUsers = await adminServices.getAllUsers('all');
+    const getAllUsers = await adminServices.getAllData('patiend');
     console.log(getAllUsers);
     if (getAllUsers) {
-      setUserData(getAllUsers.data);
+      setUserData(getAllUsers.users);
     }
   };
 
@@ -74,7 +74,7 @@ function User() {
                     <tr>
                       <td>{index + 1}</td>
                       <td>{user.fullName}</td>
-                      <td>0{user.phoneNumber}</td>
+                      <td>{user.phoneNumber}</td>
                       <td>{user.createdAt}</td>
                       <td>
                         <button

@@ -9,9 +9,10 @@ import styles from './Modal.module.scss';
 const cx = className.bind(styles);
 
 function EditUser({ setShowModalEdit, getAllUser, user }) {
+  console.log('user', user);
   const [formData, setFormData] = useState({
     id: `${user._id}`,
-    phoneNumber: `0${user.phoneNumber}`,
+    phoneNumber: `${user.phoneNumber}`,
     fullName: `${user.fullName}`,
     // password: `${user.password}`,
     // reEnterPassword: `${user.phoneNumber}`,
@@ -70,15 +71,13 @@ function EditUser({ setShowModalEdit, getAllUser, user }) {
         let data = await adminServise.editUser(formData);
         console.log('form data', data);
 
-        if (data.user.errCode === 0) {
+        if (data.data.errCode === 0) {
           getAllUser();
           setShowModalEdit(false);
-          toast.success(data.messageError);
+          toast.success(data.data.errMessage);
         } else {
-          toast.error('Sửa không thành công');
+          toast.error(data.data.errMessage);
         }
-      } else {
-        toast.error('Tạo tài khoản không thành công');
       }
     } catch (error) {
       console.log(error);

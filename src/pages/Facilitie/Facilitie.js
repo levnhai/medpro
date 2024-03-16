@@ -1,19 +1,27 @@
 import classNames from 'classnames/bind';
 import style from './Facilitie.module.scss';
 import Button from '~/components/Button';
-import { ArowServicesRightIcon, Search, Location } from '~/components/Icon';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import { CiLocationOn, CiSearch } from 'react-icons/ci';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(style);
 
 function Facilitie() {
+  // change title document
+  useEffect(() => {
+    document.title = 'Cơ sở y tế || Medpro';
+  }, []);
   return (
     <div className={cx('facilitie')}>
       <div className={cx('breadcrumb')}>
         <div className={cx('breadcrumb__container')}>
           <ul>
-            <li>Trang chủ</li>
             <li>
-              <ArowServicesRightIcon width="1.5rem" height="1.5rem" />
+              <a href="/">Trang chủ</a>
+            </li>
+            <li>
+              <MdKeyboardArrowRight style={{ width: '1.8rem', height: '1.8rem', color: '#999' }} />
               <span>Cở sở y tế</span>
             </li>
           </ul>
@@ -24,14 +32,14 @@ function Facilitie() {
           <div className={cx('facilitie__header')}>
             <div className={cx('facilitie__header--title')}>Cơ sở y tế</div>
             <div className={cx('facilitie__header--des')}>
-              với những cơ sở y tế hàng đầu sẽ giúp trảo nghiệm khám, chữa bệnh của bạn tốt hơn
+              Với những cơ sở y tế hàng đầu sẽ giúp trảo nghiệm khám, chữa bệnh của bạn tốt hơn
             </div>
           </div>
           <div className={cx('facilitie__body')}>
             <div className={cx('facilitie__formcontent')}>
               <div className={cx('facilitie__formcontent--item')}>
                 <div className={cx('facilitie__formcontent--icon')}>
-                  <Search />
+                  <CiSearch style={{ width: '2rem', height: '2rem' }} />
                 </div>
                 <div className={cx('facilitie__formcontent--input')}>
                   <input placeholder="Tìm kiếm cơ sở y tế ..." />
@@ -39,7 +47,7 @@ function Facilitie() {
               </div>
               <div className={cx('facilitie__formcontent--item')}>
                 <div className={cx('facilitie__formcontent--icon')}>
-                  <Location />
+                  <CiLocationOn style={{ width: '2rem', height: '2rem' }} />
                 </div>
                 <div className={cx('facilitie__formcontent--input')}>
                   <input placeholder="Chọn tỉnh thành ..." />

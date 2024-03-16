@@ -4,9 +4,9 @@ import HospitalServices from './Section/HospitalServices';
 import HealthServices from './Section/HealthServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/Support';
+import OutStandingDocter from './Section/OutStandingDocter';
 
 import {
-  ArrowRightIcon,
   VisitsIcon,
   HospitalIcon,
   DocterServiceIcon,
@@ -16,11 +16,56 @@ import {
   ArowIcon,
   SeeMoreIcon,
 } from '~/components/Icon';
+import { GoArrowRight } from 'react-icons/go';
 
 import style from './Home.module.scss';
 const cx = classNames.bind(style);
 
 function Home() {
+  const ImageMedia = [
+    {
+      imageUrl:
+        'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fthanh-nien-logo.e8e27f62.png&w=1920&q=75',
+      alt: 'Báo thanh niên',
+      link: 'https://thanhnien.vn/benh-vien-mat-tphcm-chinh-thuc-ra-mat-ung-dung-dat-lich-1851509686.htm',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftuoi-tre-logo.96edf351.png&w=1920&q=75',
+      alt: 'Báo tuổi trẻ',
+      link: 'https://tuoitre.vn/chuyen-doi-so-nganh-y-te-can-bat-dau-tu-viec-dang-ky-kham-chua-benh-20230216172403962.htm',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbao-nhan-dan.9670c1ee.svg&w=1920&q=75',
+      alt: 'Báo nhân dân',
+      link: 'https://nhandan.vn/ra-mat-phan-mem-medpro-ho-tro-dang-ky-tiem-chung-vaccine-post651550.html',
+    },
+    {
+      imageUrl:
+        'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnguoi-lao-dong-logo.2ebb5615.png&w=1920&q=75',
+      alt: 'Báo lao động',
+      link: 'https://nld.com.vn/suc-khoe/khong-con-canh-cho-doi-khi-di-kham-tai-benh-vien-mat-tp-hcm-20221014113328896.htm',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtv.e0154343.png&w=1920&q=75',
+      alt: 'HTV',
+      link: 'https://www.youtube.com/watch?v=glMog0sSvAM',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbtv-logo.a5df191f.svg&w=1920&q=75',
+      alt: 'Btv',
+      link: 'https://www.binhthuantv.vn/video/benh-vien-da-khoa-an-phuoc-phan-thiet-trien-khai-giai-phap-dat-kham-truc-tuyen-medpro',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fvtv1-logo.60a3a5d8.png&w=1920&q=75',
+      alt: 'Vtv1',
+    },
+    {
+      imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fthvl-logo.c30c70cd.png&w=1920&q=75',
+      alt: 'THVL',
+      link: 'https://www.youtube.com/watch?v=KUuEjKxHpcU&feature=youtu.be',
+    },
+  ];
+
   return (
     <div className={cx('home')}>
       <div className={cx('home_header')}>
@@ -67,7 +112,11 @@ function Home() {
                 Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
               </div>
               <div className={cx('cardTitle_btn')}>
-                <Button rounded rightIcon={<ArrowRightIcon />} className={cx('seeMore_btn')}>
+                <Button
+                  rounded
+                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
+                  className={cx('seeMore_btn')}
+                >
                   Xem thêm
                 </Button>
               </div>
@@ -79,7 +128,11 @@ function Home() {
                 Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
               </div>
               <div className={cx('cardTitle_btn')}>
-                <Button rounded rightIcon={<ArrowRightIcon />} className={cx('seeMore_btn')}>
+                <Button
+                  rounded
+                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
+                  className={cx('seeMore_btn')}
+                >
                   Xem thêm
                 </Button>
               </div>
@@ -91,7 +144,11 @@ function Home() {
                 Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
               </div>
               <div className={cx('cardTitle_btn')}>
-                <Button rounded rightIcon={<ArrowRightIcon />} className={cx('seeMore_btn')}>
+                <Button
+                  rounded
+                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
+                  className={cx('seeMore_btn')}
+                >
                   Xem thêm
                 </Button>
               </div>
@@ -247,7 +304,8 @@ function Home() {
                   <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
                   <div className={cx('service_des')}>
                     <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>x<p>Tái khám theo lịch hẹn</p>
+                    <p> Theo bác sĩ chuyên khoa</p>
+                    <p>Tái khám theo lịch hẹn</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
@@ -311,62 +369,15 @@ function Home() {
           <span>Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi</span>
         </div>
         <div className={cx('media_listLogo')}>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fthanh-nien-logo.e8e27f62.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftuoi-tre-logo.96edf351.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbao-nhan-dan.9670c1ee.svg&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnguoi-lao-dong-logo.2ebb5615.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtv.e0154343.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbtv-logo.a5df191f.svg&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fvtv1-logo.60a3a5d8.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
-          <div>
-            <img
-              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fthvl-logo.c30c70cd.png&w=1920&q=75"
-              alt=""
-              className={cx('media_logo')}
-            />
-          </div>
+          {ImageMedia.map((item, index) => {
+            return (
+              <div>
+                <a href={item.link} target="_blank" rel="noreferrer">
+                  <img key={index} src={item.imageUrl} alt="item.alt" className={cx('media_logo')} />
+                </a>
+              </div>
+            );
+          })}
         </div>
         <div>
           <iframe
@@ -380,6 +391,9 @@ function Home() {
             className={cx('media_video')}
           ></iframe>
         </div>
+      </div>
+      <div className={cx('outstanding-doctor')}>
+        <OutStandingDocter />
       </div>
       <div className={cx('home_news')}>
         <h2 className={cx('new_title')}>Tin tức y tế</h2>

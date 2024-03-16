@@ -16,15 +16,14 @@ function Docter() {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState();
   const [deleteDocterId, setDeleteDocterId] = useState();
-
   const [editDocter, setEditDocter] = useState({});
 
   // lấy tất cả user có trong database
   const handleGetAllDocter = async () => {
-    const getAllDocters = await adminServices.getAllDocters('all');
-    console.log(getAllDocters);
+    const getAllDocters = await adminServices.getAllData('docter');
+    console.log('getAllDocters', getAllDocters);
     if (getAllDocters) {
-      setUserData(getAllDocters.data);
+      setUserData(getAllDocters.users);
     }
   };
 
@@ -74,13 +73,13 @@ function Docter() {
               </tr>
             </thead>
             {userData &&
-              userData.map((user, index) => {
+              userData.data.map((user, index) => {
                 return (
                   <tbody>
                     <tr>
                       <td>{index + 1}</td>
                       <td>{user.fullName}</td>
-                      <td>0{user.phoneNumber}</td>
+                      <td>{user.phoneNumber}</td>
                       <td>{user.email}</td>
                       <td>{user.gender}</td>
                       <td>{user.positionId}</td>

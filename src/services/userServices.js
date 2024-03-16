@@ -3,8 +3,7 @@ import axios from '../axios';
 
 const userServise = {
   handleCheckPhone(phoneNumber) {
-    console.log('phoneNumber', phoneNumber);
-    return axios.post('/check-phone', phoneNumber);
+    return axios.post('/check-phone', { phoneNumber });
   },
   handleRandomOtp() {
     return axios.post('/send-otp');
@@ -13,8 +12,7 @@ const userServise = {
     return axios.post('/login', { phoneNumber, password });
   },
   handleCreateUser(data) {
-    console.log('createUser', data);
-    return axios.post('/create-account', data);
+    return axios.post('/api/create-account', data);
   },
 };
 

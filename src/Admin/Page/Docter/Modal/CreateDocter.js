@@ -4,7 +4,6 @@ import { RiCloseLine } from 'react-icons/ri';
 import Lightbox from 'react-image-lightbox';
 
 import userServise from '~/services/userServices';
-import { adminServices } from '~/services';
 import { ConvertBase64 } from '~/utils/common';
 import { toast } from 'react-toastify';
 
@@ -24,9 +23,9 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
     password: '',
     reEnterPassword: '',
     phoneNumber: '',
-    gender: 'Nam',
-    roleId: 'Bác sỹ',
-    positionId: 'Bác sỹ',
+    gender: '',
+    roleId: '',
+    positionId: '',
     image: '',
   });
 
@@ -58,7 +57,6 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
     //check for blank input
     for (const key in formData) {
       if (!formData[key]) {
-        console.log('thành công');
         messagesError[key] = `Please enter your ${key}`;
       }
     }
@@ -86,20 +84,17 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
     try {
       let validationError = validateForm();
       if (validationError === true) {
-        let isExistPhoneNumber = await userServise.handleCheckPhone(formData.phone);
-        if (!isExistPhoneNumber.status) {
-          let data = await adminServices.createDocter(formData);
-          console.log('data rea', data);
-          if (data.errCode === 0 && data.userData) {
-            getAllUser();
-            setShowModalCreate(false);
-            toast.success(`${data.messageError}`);
-          } else {
-            toast.error(`${data.messageError}`);
-          }
+        let data = await userServise.handleCreateUser(formData);
+        console.log('data rea', data.messageError);
+        if (data.errCode === 0 && data.userData) {
+          getAllUser();
+          setShowModalCreate(false);
+          toast.success(`${data.messageError}`);
         } else {
-          toast.error('Số điện thoại đã tồn tại');
+          toast.error(`${data.messageError}`);
         }
+      } else {
+        toast.error('Số điện thoại đã tồn tại');
       }
     } catch (error) {
       console.log(error);
@@ -195,7 +190,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
               <div className={cx('input--item')}>
                 <div>
                   <input
-                    type="number"
+                    type="text"
                     placeholder="Nhập số điện thoại"
                     name="phoneNumber"
                     className={cx('customInput')}
@@ -205,16 +200,16 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                 </div>
                 <div>
                   <select onChange={handleOnchange} value={formData.gender} name="gender" className={cx('customInput')}>
-                    <option name="gender" value="">
-                      Giới tính
+                    <option name="gender" disabled value="">
+                      ---- Giới tính ---
                     </option>
-                    <option name="gender" value="Nữ">
+                    <option name="gender" value="female">
                       Nữ
                     </option>
-                    <option name="gender" value="khác">
+                    <option name="gender" value="other  ">
                       Khác
                     </option>
-                    <option name="gender" value="Nam">
+                    <option name="gender" value="male">
                       Nam
                     </option>
                   </select>
@@ -229,22 +224,22 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     className={cx('customInput')}
                     name="positionId"
                   >
-                    <option name="positionId" value="">
-                      Trình đô
+                    <option name="positionId" value="" disabled>
+                      --- Trình độ ---
                     </option>
-                    <option name="positionId" value="Bác sỹ">
+                    <option name="positionId" value="none">
                       Bác sỹ
                     </option>
-                    <option name="positionId" value="Thạc sỹ">
+                    <option name="positionId" value="master">
                       Thạc sỹ
                     </option>
-                    <option name="positionId" value="Tiến sỹ">
+                    <option name="positionId" value="docter">
                       Tiến sỹ
                     </option>
-                    <option name="positionId" value="Phó giáo sư">
+                    <option name="positionId" value="associate professor">
                       Phó giáo sư
                     </option>
-                    <option name="positionId" value="Giáo sư">
+                    <option name="positionId" value="professor">
                       Giáo sư
                     </option>
                   </select>
@@ -252,16 +247,16 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                 </div>
                 <div>
                   <select onChange={handleOnchange} value={formData.roleId} className={cx('customInput')} name="roleId">
-                    <option name="roleId" value="">
+                    <option name="roleId" disabled value="">
                       --- Role id ---
                     </option>
-                    <option name="roleId" value="Bác sỹ">
+                    <option name="roleId" value="docter">
                       Bác sỹ
                     </option>
-                    <option name="roleId" value="Quản trị viên">
+                    <option name="roleId" value="admin">
                       Quản trị viên
                     </option>
-                    <option name="roleId" value="Người dùng">
+                    <option name="roleId" value="patiend">
                       Người dùng
                     </option>
                   </select>

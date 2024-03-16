@@ -1,6 +1,6 @@
 import Slider from 'react-slick';
 import classNames from 'classnames/bind';
-import { ArowServicesRightIcon, ArowServicesLeftIcon } from '~/components/Icon';
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import style from './HealthServices.module.scss';
 const cx = classNames.bind(style);
@@ -8,6 +8,7 @@ const cx = classNames.bind(style);
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
 
+  let iconStyles = { width: '2rem', height: '2rem', color: '#003553' };
   return (
     <div
       className={className}
@@ -24,13 +25,14 @@ function SampleNextArrow(props) {
       }}
       onClick={onClick}
     >
-      <ArowServicesRightIcon />
+      <MdKeyboardArrowRight style={iconStyles} />
     </div>
   );
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
+  let iconStyles = { width: '2rem', height: '2rem', color: '#003553' };
   return (
     <div
       className={className}
@@ -47,7 +49,7 @@ function SamplePrevArrow(props) {
       }}
       onClick={onClick}
     >
-      <ArowServicesLeftIcon />
+      <MdKeyboardArrowLeft style={iconStyles} />
     </div>
   );
 }
@@ -58,8 +60,8 @@ function HealthServices() {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
+    autoplay: true,
+    autoplaySpeed: 3000,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };

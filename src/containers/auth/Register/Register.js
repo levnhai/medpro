@@ -24,6 +24,12 @@ function Register() {
     password: '',
     reEnterPassword: '',
     referralCode: '',
+    email: '',
+    address: '',
+    gender: '',
+    roleId: 'R3',
+    positionId: '',
+    image: '',
   });
   const [messagesError, setMessageError] = useState({
     fullName: '',

@@ -3,38 +3,18 @@ import axios from '../axios';
 
 const adminServise = {
   // user
-  getAllUsers(userId) {
-    return axios.get(`/api/all-user?id=${userId}`);
-  },
-  deleteUser(userId) {
-    return axios.delete('/api/delete-user', {
-      data: {
-        id: userId,
-      },
-    });
+  getAllData(Id) {
+    return axios.get(`/api/all-data?id=${Id}`);
   },
   editUser(data) {
     console.log('data', data);
     return axios.put('/api/edit-user', data);
   },
 
-  // Docter
-  createDocter(data) {
-    return axios.post('/api/create-docter', data);
-  },
-
-  getAllDocters(docterId) {
-    return axios.get(`/api/all-docter?id=${docterId}`);
-  },
-
-  EditDocter(data) {
-    console.log(data);
-    return axios.put('/api/edit-docter', data);
-  },
-  deleteDocter(docterId) {
-    return axios.delete('/api/delete-docter', {
+  deleteUser(userId) {
+    return axios.delete('/api/delete-user', {
       data: {
-        id: docterId,
+        id: userId,
       },
     });
   },

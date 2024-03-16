@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './About.module.scss';
 import { SliderData1, SliderData2 } from './SliderData';
 import { Qr_zaloIcon, PhoneIcon } from '~/components/Icon';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,11 @@ function About() {
     autoplay: true,
     autoplaySpeed: 4000,
   };
+
+  // change title document
+  useEffect(() => {
+    document.title = 'Về chúng tôi || Medpro';
+  }, []);
 
   return (
     <div className={cx('about')}>

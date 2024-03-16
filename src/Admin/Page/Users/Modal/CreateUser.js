@@ -9,14 +9,18 @@ import styles from './Modal.module.scss';
 const cx = className.bind(styles);
 
 function CreateUser({ setShowModalCreate, getAllUser }) {
-  const [passwordShowHide, setPasswordShowHide] = useState(false);
-
   const [formData, setFormData] = useState({
     phoneNumber: '',
     fullName: '',
     password: '',
     reEnterPassword: '',
     referralCode: '',
+    email: '',
+    address: '',
+    gender: '',
+    roleId: 'patiend',
+    positionId: '',
+    image: '',
   });
 
   const [messagesError, setMessageError] = useState({
@@ -25,6 +29,9 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
     password: '',
     reEnterPassword: '',
   });
+
+  const [showHidePassword, setShowHidePassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState(false);
 
   const handleOnchange = (e) => {
     setMessageError({});
@@ -77,9 +84,12 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
     return true;
   };
 
-  // handle action onChange show hide password
   const handleShowHidePassword = () => {
-    setPasswordShowHide(!passwordShowHide);
+    setShowHidePassword(!showHidePassword);
+  };
+
+  const handleShowHideReEnterPassword = () => {
+    setConfirmPassword(!confirmPassword);
   };
 
   // handle onClick submit btn Create User
@@ -90,16 +100,13 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
       if (validationError === true) {
         console.log('thành công');
         console.log('formData', formData);
-        // let isExistPhoneNumber = await userServise.handleCheckPhone(formData.phoneNumber);
 
-        // console.log('isExistPhoneNumber', isExistPhoneNumber);
-        // console.log('formDataInput', formData.phone);
         let data = await userServise.handleCreateUser(formData);
         console.log('data', data);
         if (data.errCode === 0 && data.userData) {
           getAllUser();
           setShowModalCreate(false);
-          toast.success(data.messageError);
+          toast.success(`${data.messageError}`);
         } else {
           toast.error(data.messageError);
         }
@@ -145,7 +152,7 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
               <div className={cx('input--item')}>
                 <div>
                   <input
-                    // type={showHidePassword ? 'text' : 'password'}
+                    type={showHidePassword ? 'text' : 'password'}
                     placeholder="Nhập mật khẩu"
                     className={cx('customInput')}
                     name="password"
@@ -154,11 +161,11 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
                   <span className={cx('showHideIcon')}>
                     <i
                       onClick={() => {
-                        // handleShowHidePassword();
+                        handleShowHidePassword();
                       }}
-                      // className={
-                      //   showHidePassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
-                      // }
+                      className={
+                        showHidePassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
+                      }
                     />
                   </span>
                 </div>
@@ -167,7 +174,7 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
               <div className={cx('input--item')}>
                 <div>
                   <input
-                    // type={showHideReEnterPassword ? 'text' : 'password'}
+                    type={confirmPassword ? 'text' : 'password'}
                     placeholder="Nhập lại mật khẩu"
                     className={cx('customInput')}
                     name="reEnterPassword"
@@ -176,11 +183,11 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
                   <span className={cx('showHideIcon')}>
                     <i
                       onClick={() => {
-                        // handleShowHideReEnterPassword();
+                        handleShowHideReEnterPassword();
                       }}
-                      // className={
-                      //   // showHideReEnterPassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
-                      // }
+                      className={
+                        confirmPassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
+                      }
                     />
                   </span>
                 </div>

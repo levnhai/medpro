@@ -48,7 +48,6 @@ function CheckPhone() {
         return setMessageError('Vui lòng nhập đúng định dạng !');
       } else {
         let isCheckPhoneExists = await userServise.handleCheckPhone(phoneNumber);
-        console.log(isCheckPhoneExists.isCheckPhoneExists);
         dispatch(phone(phoneNumber));
 
         if (isCheckPhoneExists.isCheckPhoneExists) {
