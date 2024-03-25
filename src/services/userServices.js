@@ -14,6 +14,9 @@ const userServise = {
   handleCreateUser(data) {
     return axios.post('/api/create-account', data);
   },
+  handleGetTopDocter(limit) {
+    return axios.get(`/api/get-top-docter?limit=${limit}`);
+  },
 };
 
 export default userServise;

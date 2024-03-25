@@ -105,7 +105,6 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
-    console.log('thanh cogn');
     let file = e.target.files[0];
     if (file) {
       // const objectURL = URL.createObjectURL(file);
@@ -124,13 +123,11 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
   };
 
   useEffect(() => {
-    console.log(docterData.image);
     if (docterData.image) {
       const base64String = Buffer.from(docterData.image.data, 'base64').toString('binary');
       setImageData(base64String);
     }
   }, []);
-  console.log('formData', formData);
 
   return (
     <>

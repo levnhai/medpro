@@ -203,13 +203,13 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     <option name="gender" disabled value="">
                       ---- Giới tính ---
                     </option>
-                    <option name="gender" value="female">
+                    <option name="gender" value="F">
                       Nữ
                     </option>
-                    <option name="gender" value="other  ">
+                    <option name="gender" value="O">
                       Khác
                     </option>
-                    <option name="gender" value="male">
+                    <option name="gender" value="M">
                       Nam
                     </option>
                   </select>
@@ -227,19 +227,19 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     <option name="positionId" value="" disabled>
                       --- Trình độ ---
                     </option>
-                    <option name="positionId" value="none">
+                    <option name="positionId" value="P0">
                       Bác sỹ
                     </option>
-                    <option name="positionId" value="master">
+                    <option name="positionId" value="P1">
                       Thạc sỹ
                     </option>
-                    <option name="positionId" value="docter">
+                    <option name="positionId" value="P2">
                       Tiến sỹ
                     </option>
-                    <option name="positionId" value="associate professor">
+                    <option name="positionId" value="P3">
                       Phó giáo sư
                     </option>
-                    <option name="positionId" value="professor">
+                    <option name="positionId" value="P4">
                       Giáo sư
                     </option>
                   </select>
@@ -250,13 +250,13 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     <option name="roleId" disabled value="">
                       --- Role id ---
                     </option>
-                    <option name="roleId" value="docter">
+                    <option name="roleId" value="R2">
                       Bác sỹ
                     </option>
-                    <option name="roleId" value="admin">
+                    <option name="roleId" value="R1">
                       Quản trị viên
                     </option>
-                    <option name="roleId" value="patiend">
+                    <option name="roleId" value="R3">
                       Người dùng
                     </option>
                   </select>

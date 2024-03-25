@@ -18,7 +18,7 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
     email: '',
     address: '',
     gender: '',
-    roleId: 'patiend',
+    roleId: 'R3',
     positionId: '',
     image: '',
   });

@@ -371,7 +371,7 @@ function Home() {
         <div className={cx('media_listLogo')}>
           {ImageMedia.map((item, index) => {
             return (
-              <div>
+              <div key={index}>
                 <a href={item.link} target="_blank" rel="noreferrer">
                   <img key={index} src={item.imageUrl} alt="item.alt" className={cx('media_logo')} />
                 </a>
@@ -385,7 +385,7 @@ function Home() {
             height="415"
             src="https://www.youtube.com/embed/zfmhCJgWx8Y?si=QLz1NFw-RFvjrFqO"
             title="YouTube video player"
-            frameBorder="0"
+            // frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className={cx('media_video')}

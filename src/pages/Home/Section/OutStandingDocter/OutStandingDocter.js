@@ -1,13 +1,14 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
+import { useEffect } from 'react';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-
-import '../../../../../node_modules/slick-carousel/slick/slick.css';
-import '../../../../../node_modules/slick-carousel/slick/slick-theme.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { Buffer } from 'buffer';
 
 import Button from '~/components/Button';
-
+import { fetchTopDoctors } from '~/redux/user/authSlide';
 import style from './OutStandingDocter.module.scss';
+
 const cx = classNames.bind(style);
 
 function SampleNextArrow(props) {
@@ -60,6 +61,10 @@ function SamplePrevArrow(props) {
 }
 
 function OutStandingDocter() {
+  const dispatch = useDispatch();
+  const topDoctors = useSelector((state) => state.auth.topDoctors);
+  console.log('topDoctors', topDoctors);
+
   var settings = {
     infinite: true,
     speed: 500,
@@ -68,6 +73,10 @@ function OutStandingDocter() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+  // Select data from store
+  useEffect(() => {
+    dispatch(fetchTopDoctors(10));
+  }, [dispatch]);
 
   return (
     <div className={cx('wapper')}>
@@ -82,156 +91,27 @@ function OutStandingDocter() {
         <div>
           <div>
             <Slider {...settings}>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
-              <div className={cx('profile')}>
-                <div>
-                  <img
-                    className={cx('avata')}
-                    src="https://cdn.bookingcare.vn/fo/w384/2023/02/23/141704-lenhatvinh400x400.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className={cx('position')}>
-                  <div>
-                    Bác sỹ chuyên khoa <br />| Lê Văn Hải
-                  </div>
-                  <span>tai mũi họng</span>
-                </div>
-              </div>
+              {topDoctors.data &&
+                topDoctors.data.map((item, index) => {
+                  let base64String = '';
+                  if (item.image) {
+                    base64String = Buffer.from(item.image, 'base64').toString('binary');
+                  }
+
+                  // const positionData = ...item.positionIdData;
+                  // console.log('positionIdData', positionData);
+                  return (
+                    <div className={cx('profile')} key={index}>
+                      <div>
+                        <img className={cx('avata')} src={base64String} alt="" />
+                      </div>
+                      <div className={cx('position')}>
+                        <div>{`${item.positionIdData[0].valueVi}, ${item.fullName}`}</div>
+                        <span>tai mũi họng</span>
+                      </div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>

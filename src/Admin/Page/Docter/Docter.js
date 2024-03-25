@@ -20,8 +20,7 @@ function Docter() {
 
   // lấy tất cả user có trong database
   const handleGetAllDocter = async () => {
-    const getAllDocters = await adminServices.getAllData('docter');
-    console.log('getAllDocters', getAllDocters);
+    const getAllDocters = await adminServices.getAllData('R2');
     if (getAllDocters) {
       setUserData(getAllDocters.users);
     }
@@ -81,9 +80,19 @@ function Docter() {
                       <td>{user.fullName}</td>
                       <td>{user.phoneNumber}</td>
                       <td>{user.email}</td>
-                      <td>{user.gender}</td>
-                      <td>{user.positionId}</td>
-                      <td>{user.roleId}</td>
+                      <td>{user.gender === 0 ? 'Giới tính khác' : user.gender === 'M' ? 'Nam' : 'Nữ'}</td>
+                      <td>
+                        {user.positionId === 'P0'
+                          ? 'Bác sỹ'
+                          : user.positionId === 'P1'
+                          ? 'Thạc sỹ'
+                          : user.positionId === 'P2'
+                          ? 'Tiến sỹ'
+                          : user.positionId === 'P3'
+                          ? 'Phó giáo sư'
+                          : 'Giáo sư'}
+                      </td>
+                      <td>{user.roleId === 'R2' ? 'Bác sỹ' : user.roleId === 'R3' ? 'Bệnh Nhân' : 'Quản trị viên'}</td>
                       <td>{user.createdAt}</td>
                       <td>
                         <button

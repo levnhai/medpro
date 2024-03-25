@@ -27,7 +27,7 @@ function HospitalServices() {
       <Slider {...settings}>
         {HospitalData.map((hopital, index) => {
           return (
-            <div className="hopital_sliderItem">
+            <div key={index} className="hopital_sliderItem">
               <a href={hopital.link} key={index} rel="noreferrer" target="_blank">
                 <div className="hopital_card">
                   <div className="hopital_cardImage">
