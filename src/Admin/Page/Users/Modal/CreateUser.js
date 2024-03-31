@@ -1,88 +1,22 @@
 import React, { useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import userServise from '~/services/userServices';
 import { toast } from 'react-toastify';
+import { FormProvider, useForm } from 'react-hook-form';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
+import userServise from '~/services/userServices';
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
+import { Input } from '~/components/Input/Input';
+import { password_validation, name_validation, phone_validation } from '~/utils/inputValidations';
 
 const cx = className.bind(styles);
 
 function CreateUser({ setShowModalCreate, getAllUser }) {
-  const [formData, setFormData] = useState({
-    phoneNumber: '',
-    fullName: '',
-    password: '',
-    reEnterPassword: '',
-    referralCode: '',
-    email: '',
-    address: '',
-    gender: '',
-    roleId: 'R3',
-    positionId: '',
-    image: '',
-  });
+  const methods = useForm();
 
-  const [messagesError, setMessageError] = useState({
-    phoneNumber: '',
-    fullName: '',
-    password: '',
-    reEnterPassword: '',
-  });
-
-  const [showHidePassword, setShowHidePassword] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState(false);
-
-  const handleOnchange = (e) => {
-    setMessageError({});
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // is valis phone number in vietnam
-  const regexPhoneNumber = (phone) => {
-    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
-    return phone.match(regexPhoneNumber) ? true : false;
-  };
-
-  // validate form input
-  const validateForm = () => {
-    // validate input phone number
-    if (formData.phoneNumber.trim() === '') {
-      setMessageError({ ...messagesError, phoneNumber: 'Vui lòng số điện thoại' });
-      return false;
-    }
-
-    if (!regexPhoneNumber(formData.phoneNumber)) {
-      setMessageError({ ...messagesError, phoneNumber: 'Vui lòng nhập đúng định dạng' });
-      return false;
-    }
-
-    // validate input fullName
-    if (formData.fullName.trim() === '') {
-      setMessageError({ ...messagesError, fullName: 'Vui lòng nhập họ tên' });
-      return false;
-    }
-
-    // validate input password
-    if (formData.password.trim() === '') {
-      setMessageError({ ...messagesError, password: 'Vui lòng nhập mật khẩu' });
-      return false;
-    }
-    if (formData.password.trim().length < 8) {
-      setMessageError({ ...messagesError, password: 'Vui lòng nhập mật khẩu 8 kí tự' });
-      return false;
-    }
-    if (formData.reEnterPassword.trim() === '') {
-      setMessageError({ ...messagesError, reEnterPassword: 'Vui lòng nhập lại mật khẩu' });
-      return false;
-    }
-
-    if (!/\d/.test(formData.password)) {
-      setMessageError({ ...messagesError, password: 'mật khẩu có 1 ít nhất 1 chữ số' });
-      return false;
-    }
-    return true;
-  };
+  const [showHidePassword, setShowHidePassword] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState(true);
 
   const handleShowHidePassword = () => {
     setShowHidePassword(!showHidePassword);
@@ -92,29 +26,21 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
     setConfirmPassword(!confirmPassword);
   };
 
-  // handle onClick submit btn Create User
-  const handleSubmitCreateUser = async (e) => {
-    e.preventDefault();
+  const handleSubmitCreateUser = methods.handleSubmit(async (formData) => {
     try {
-      let validationError = validateForm();
-      if (validationError === true) {
-        console.log('thành công');
-        console.log('formData', formData);
-
-        let data = await userServise.handleCreateUser(formData);
-        console.log('data', data);
-        if (data.errCode === 0 && data.userData) {
-          getAllUser();
-          setShowModalCreate(false);
-          toast.success(`${data.messageError}`);
-        } else {
-          toast.error(data.messageError);
-        }
+      let data = await userServise.handleCreateUser(formData);
+      console.log('data', data);
+      if (data.errCode === 0 && data.userData) {
+        getAllUser();
+        setShowModalCreate(false);
+        toast.success(`${data.messageError}`);
+      } else {
+        toast.error(data.messageError);
       }
     } catch (error) {
       console.log(error);
     }
-  };
+  });
 
   return (
     <>
@@ -129,79 +55,53 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
           </button>
           <div className={cx('modalContent')}>
             <div className={cx('wrapper--input')}>
-              <div className={cx('input--item')}>
-                <input
-                  type="text"
-                  placeholder="Nhập Số điện thoại"
-                  name="phoneNumber"
-                  className={cx('customInput')}
-                  onChange={handleOnchange}
-                />
-                <small className={cx('text--danger')}>{messagesError.phoneNumber}</small>
-              </div>
-              <div className={cx('input--item')}>
-                <input
-                  type="text"
-                  placeholder="Nhập họ tên"
-                  name="fullName"
-                  className={cx('customInput')}
-                  onChange={handleOnchange}
-                />
-                <small className={cx('text--danger')}>{messagesError.fullName}</small>
-              </div>
-              <div className={cx('input--item')}>
-                <div>
-                  <input
-                    type={showHidePassword ? 'text' : 'password'}
-                    placeholder="Nhập mật khẩu"
-                    className={cx('customInput')}
-                    name="password"
-                    onChange={handleOnchange}
-                  />
-                  <span className={cx('showHideIcon')}>
-                    <i
-                      onClick={() => {
-                        handleShowHidePassword();
-                      }}
-                      className={
-                        showHidePassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
-                      }
-                    />
+              <FormProvider {...methods}>
+                <div className={cx('input--item')}>
+                  <Input {...phone_validation} />
+                </div>
+                <div className={cx('input--item')}>
+                  <Input {...name_validation} />
+                </div>
+                <div className={cx('input--item')}>
+                  <Input type={showHidePassword ? 'password' : ' text'} {...password_validation} />
+                  <span
+                    onClick={handleShowHidePassword}
+                    style={{ position: 'absolute', right: '14px', top: '53%', fontSize: '20px', cursor: 'pointer' }}
+                  >
+                    {showHidePassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                   </span>
                 </div>
-                <small className={cx('text--danger')}>{messagesError.password}</small>
-              </div>
-              <div className={cx('input--item')}>
-                <div>
-                  <input
-                    type={confirmPassword ? 'text' : 'password'}
-                    placeholder="Nhập lại mật khẩu"
-                    className={cx('customInput')}
+                <div className={cx('input--item')}>
+                  <Input
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'required',
+                      },
+                    }}
+                    label=""
+                    type={confirmPassword ? 'password' : ' text'}
+                    id="reEnterPassword"
+                    placeholder="Please enter your reEnterPassword..."
                     name="reEnterPassword"
-                    onChange={handleOnchange}
                   />
-                  <span className={cx('showHideIcon')}>
-                    <i
-                      onClick={() => {
-                        handleShowHideReEnterPassword();
-                      }}
-                      className={
-                        confirmPassword ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'
-                      }
-                    />
+                  <span
+                    onClick={handleShowHideReEnterPassword}
+                    style={{ position: 'absolute', right: '14px', top: '53%', fontSize: '20px', cursor: 'pointer' }}
+                  >
+                    {confirmPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                   </span>
                 </div>
-                <small className={cx('text--danger')}>{messagesError.reEnterPassword}</small>
-              </div>
-              <div className={cx('input--item')}>
-                <input
-                  type="text"
-                  placeholder="Nhập mã giới thiệu (Nếu có)"
-                  className={cx('customInput')}
-                  name="referralCode"
-                  onChange={handleOnchange}
-                />
-              </div>
+                <div className={cx('input--item')}>
+                  <Input
+                    label=""
+                    type="text"
+                    id="referralCode"
+                    placeholder="Please enter your referralCode..."
+                    name="referralCode"
+                  />
+                </div>
+              </FormProvider>
               <p className={cx('customFont')}>
                 Bằng việc đăng ký, bạn đã đồng ý với Medpro về
                 <br />

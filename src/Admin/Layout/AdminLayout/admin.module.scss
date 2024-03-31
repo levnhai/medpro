@@ -1,9 +1,15 @@
+$height-header: 70px;
+
 .wrapper {
   margin: 0;
+  overflow: hidden;
 
   .header {
     display: flex;
-    height: 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: $height-header;
     align-items: center;
     justify-content: space-between;
     padding: 0px 100px;
@@ -62,12 +68,13 @@
 
   .container {
     display: flex;
+    margin-top: $height-header;
 
     .sidebar {
       width: 20%;
-      min-height: 100vh;
+      position: fixed;
 
-      .content {
+      .sidebar-content {
         background-color: rgb(92, 105, 227);
         height: 100vh;
         width: 100%;
@@ -108,35 +115,8 @@
     }
     .content {
       width: 80%;
-      min-height: 100vh;
+      overflow: hidden;
+      margin-left: calc(100% - 80%);
     }
   }
 }
-
-// .sidebar-item {
-//   // text-align: center
-//   padding: 12px 20px;
-//   font-size: 16px;
-//   font-weight: 500;
-//   cursor: pointer;
-//   color: #fff;
-// }
-
-// .sidebar-item-title {
-//   padding-left: 10px;
-//   width: 100%;
-
-//   &:hover {
-//     // background-color: rgb(127, 123, 123);
-//     color: red;
-//   }
-// }
-
-// .sidebar-list-child {
-//   margin-top: 20px;
-//   padding-left: 30px;
-// }
-
-// .sidebar-list-child li {
-//   padding: 12px 0px;
-// }

@@ -1,16 +1,16 @@
-.wrapper--child {
+.wrapper-otp {
   max-width: 450px;
   margin: 0 auto;
   padding: 10px 28px;
 }
 
-.wrapper--inner__content {
+.otp-content {
   display: flex;
   flex-direction: column;
   height: auto;
 }
 
-.tag--header {
+.tag-header {
   text-transform: uppercase;
   color: #1e8bca;
   font-weight: 500;
@@ -25,6 +25,45 @@
   text-align: center;
 }
 
+.wrapper-input {
+  margin: 20px 0px;
+}
+
+.tel-input {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.tel-input .form-control {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  padding-left: 48px;
+  margin-left: 0;
+  background: #fff;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  line-height: 25px;
+  outline: none;
+
+  &:focus {
+    color: #495057;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+.selected-flag img {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+}
+
 .errorMessage {
   padding: 14px 0px;
 }
@@ -33,6 +72,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 24px;
 }
 
 .otpInput {
@@ -42,8 +82,9 @@
   border-radius: 5px;
   background: white;
 
-  &:focus-visible {
-    border: 2px solid #060606;
+  &:focus {
+    color: #495057;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 }
 

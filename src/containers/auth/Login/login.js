@@ -1,55 +1,42 @@
-import { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { loginUser } from '~/redux/user/authSlide';
 
+import { FormProvider, useForm } from 'react-hook-form';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+
+import { loginUser } from '~/redux/user/authSlide';
 import Button from '~/components/Button';
+import { Input } from '~/components/Input/Input';
+import { password_validation } from '~/utils/inputValidations';
 import userServise from '~/services/userServices';
 
-import Auth from '../Auth/Auth';
+import style from './login.module.scss';
+import Auth from '../Auth';
 
-import './login.scss';
+const cx = classNames.bind(style);
 
 function Login() {
   const isphone = useSelector((state) => state.auth.phoneNumber);
-
+  const methods = useForm();
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const InputRef = useRef(null);
+  const { setFocus } = methods;
 
   // use state
-  const [password, setPassword] = useState('');
-  const [messageError, setMessageError] = useState('');
-  const [passwordShowHide, setPasswordShowHide] = useState(false);
-
-  // handle action onChange password
-  const handleOnChangePassword = (e) => {
-    setPassword(e.target.value);
-    setMessageError('');
-  };
+  const [passwordShowHide, setPasswordShowHide] = useState(true);
 
   // handle action onChange show hide password
   const handleShowHidePassword = () => {
     setPasswordShowHide(!passwordShowHide);
   };
 
-  // submit key press
-  const handleKeypress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleLogin();
-    }
-  };
-
-  const handleLogin = async () => {
-    // e.preventDefault();
+  // handle Login
+  const handleLogin = methods.handleSubmit(async (data) => {
     try {
-      if (!password) {
-        return setMessageError('Vui lòng nhập mật khẩu đăng nhập');
-      }
-
-      let userData = await userServise.handleLogin(isphone, password);
+      let userData = await userServise.handleLogin(isphone, data.password);
       if (userData.errCode === 0 && userData.status === true) {
         navigator('/');
         dispatch(loginUser(userData));
@@ -59,62 +46,60 @@ function Login() {
     } catch (error) {
       console.log('lỗi r bạn ơi ');
     }
-  };
+  });
 
   useEffect(() => {
-    if (InputRef.current) {
-      InputRef.current.focus();
-    }
-  }, []);
+    setFocus('password');
+  }, [setFocus]);
 
   return (
-    <Auth>
-      <div className="checkPhone--wrapper__body">
-        <p className="text-center">Vui lòng đăng nhập để tiếp tục</p>
-        <div className="tel-input">
-          <input className="form-control disable-form" value={isphone} disabled />
-          <div className="selected-flag">
-            <img
-              src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
-              alt="vietnamese"
-            />
+    <>
+      <Auth>
+        <div className={cx('login-wrapper')}>
+          <p className={cx('text-center')}>Vui lòng đăng nhập để tiếp tục</p>
+          <div className={cx('wrapper-input')}>
+            <div className={cx('tel-input')}>
+              <input className={cx('form-control')} value={isphone} disabled />
+              <div className={cx('selected-flag')}>
+                <img
+                  src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
+                  alt="vietnamese"
+                />
+              </div>
+            </div>
+            <div className={cx('tel-input')}>
+              <FormProvider {...methods}>
+                <Input type={passwordShowHide ? 'password' : ' text'} {...password_validation} />
+                <span
+                  onClick={handleShowHidePassword}
+                  style={{
+                    position: 'absolute',
+                    right: '12px',
+                    top: '45%',
+                    padding: '4px',
+                    fontSize: '20px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {passwordShowHide ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </span>
+              </FormProvider>
+            </div>
+          </div>
+          <Button
+            className={cx('loginBtn')}
+            onClick={() => {
+              handleLogin();
+            }}
+          >
+            Tiếp tục
+          </Button>
+          <div className={cx('text-right')}>
+            <p className={cx('forgot-password')}>Quên mật khẩu ?</p>
           </div>
         </div>
-        <p className="login-errorMessage"></p>
-        <div className="tel-input">
-          <input
-            className="form-control"
-            value={password}
-            type={passwordShowHide ? 'text' : 'password'}
-            placeholder="Vui lòng nhập mật khẩu"
-            onChange={(e) => {
-              handleOnChangePassword(e);
-            }}
-            onKeyDown={handleKeypress}
-            ref={InputRef}
-          />
-          <i
-            onClick={() => {
-              handleShowHidePassword();
-            }}
-            className={passwordShowHide ? 'fa-regular fa-eye eyeIconBtn' : 'fa-regular fa-eye-slash eyeIconBtn'}
-          />
-        </div>
-        <p className="login-errorMessage">{messageError}</p>
-        <Button
-          className="LoginBtn"
-          onClick={() => {
-            handleLogin();
-          }}
-        >
-          Tiếp tục
-        </Button>
-
-        <div className="text-right">
-          <p className="forgot-password">Quên mật khẩu ?</p>
-        </div>
-      </div>
-    </Auth>
+      </Auth>
+    </>
   );
 }
 

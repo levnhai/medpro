@@ -15,7 +15,7 @@ const routes = {
   dashboard: '/system',
   userManage: '/system/user-manage',
   docterManage: '/system/docter-manage',
-  clinicManage: '/system/clinic-manage',
+  hospitalManage: '/system/hospital-manage',
   notFound: '*',
 };
 export default routes;

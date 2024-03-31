@@ -28,14 +28,14 @@ export const SidebarData = [
     ],
   },
   {
-    title: 'Phòng khám',
-    path: '/system/clinic-manage',
+    title: 'Bệnh viện',
+    path: '/system/hospital-manage',
     icon: <FaIcons.FaClinicMedical />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: 'quản lý người dùng',
+        title: 'quản lý bệnh viện',
       },
     ],
   },

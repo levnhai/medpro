@@ -29,7 +29,7 @@ function AdminLayout({ children }) {
       </div>
       <div className={cx('container')}>
         <div className={cx('sidebar')}>
-          <div className={cx('content')}>
+          <div className={cx('sidebar-content')}>
             <div className={cx('info')}>
               <div className={cx('avata')}></div>
               <div className={cx('status')}>

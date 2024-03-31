@@ -115,9 +115,9 @@ function OtpInput() {
 
   return (
     <Auth>
-      <div className="wrapper--child">
-        <div className="wrapper--inner__content">
-          <h4 className="tag--header">XIN CHÀO!</h4>
+      <div className="wrapper-otp ">
+        <div className="otp-content">
+          <h4 className="tag-header">XIN CHÀO!</h4>
           <p className="customFotnSize">Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.</p>
           <div className="tel-input">
             <input className="form-control disable-form" value={isphoneNumber} disabled />

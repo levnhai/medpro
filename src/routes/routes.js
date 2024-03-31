@@ -19,7 +19,7 @@ import config from '~/config';
 // admin
 import Docter from '~/Admin/Page/Docter';
 import Dashboard from '~/Admin/Page/Dashboard';
-import Clinic from '~/Admin/Page/Clinic';
+import Hospital from '~/Admin/Page/Hospital';
 import User from '~/Admin/Page/Users';
 
 // notFound
@@ -42,7 +42,7 @@ const publicRoutes = [
   { path: config.routers.userManage, component: User, layout: AdminLayout },
   { path: config.routers.docterManage, component: Docter, layout: AdminLayout },
   { path: config.routers.dashboard, component: Dashboard, layout: AdminLayout },
-  { path: config.routers.clinicManage, component: Clinic, layout: AdminLayout },
+  { path: config.routers.hospitalManage, component: Hospital, layout: AdminLayout },
 
   // notFound
   { path: config.routers.notFound, component: NotFound },

@@ -11,7 +11,7 @@
 
 .centered {
   position: fixed;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -102,11 +102,11 @@
 }
 
 .upload-image {
-  min-width: 200px;
+  width: 213px !important;
   height: 100px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   cursor: pointer;
   box-shadow: 10px 10px 5px #ccc;
 }
@@ -172,8 +172,8 @@
   right: 0;
   top: 0;
   align-self: flex-end;
-  margin-top: -7px;
-  margin-right: -7px;
+  margin-top: 3px;
+  margin-right: 5px;
 }
 
 .closeBtn:hover {

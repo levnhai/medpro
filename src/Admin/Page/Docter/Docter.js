@@ -5,9 +5,9 @@ import { adminServices } from '~/services';
 import CreateDocter from './Modal/CreateDocter';
 import DeleteDocter from './Modal/DeleteDocter';
 import EditDocter from './Modal/EditDocter';
-
 import classNames from 'classnames/bind';
 import styles from './Docter.module.scss';
+
 const cx = classNames.bind(styles);
 
 function Docter() {

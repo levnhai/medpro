@@ -5,9 +5,7 @@ import Lightbox from 'react-image-lightbox';
 import { Buffer } from 'buffer';
 
 import { ConvertBase64 } from '~/utils/common';
-
 import adminServise from '~/services/adminServices';
-
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
 
@@ -101,6 +99,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
       console.log(error);
     }
   };
+
   const handleOnChangeImage = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       return;
@@ -260,6 +259,13 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
                   <small className={cx('text--danger')}>{messagesError.roleId}</small>
                 </div>
               </div>
+              {/* <div className={cx('input--item')}>
+                <MdEditor
+                  style={{ height: '500px' }}
+                  renderHTML={(text) => mdParser.render(text)}
+                  onChange={handleEditorChange}
+                />
+              </div> */}
               <div className={cx('input--item')}>
                 <div>
                   <label className={cx('label-uploadImage')} htmlFor="upload-image">

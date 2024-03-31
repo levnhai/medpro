@@ -63,7 +63,6 @@ function SamplePrevArrow(props) {
 function OutStandingDocter() {
   const dispatch = useDispatch();
   const topDoctors = useSelector((state) => state.auth.topDoctors);
-  console.log('topDoctors', topDoctors);
 
   var settings = {
     infinite: true,
@@ -73,6 +72,7 @@ function OutStandingDocter() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
   // Select data from store
   useEffect(() => {
     dispatch(fetchTopDoctors(10));
@@ -97,9 +97,6 @@ function OutStandingDocter() {
                   if (item.image) {
                     base64String = Buffer.from(item.image, 'base64').toString('binary');
                   }
-
-                  // const positionData = ...item.positionIdData;
-                  // console.log('positionIdData', positionData);
                   return (
                     <div className={cx('profile')} key={index}>
                       <div>
