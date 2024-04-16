@@ -9,7 +9,6 @@ import styles from './Modal.module.scss';
 const cx = className.bind(styles);
 
 function EditUser({ setShowModalEdit, getAllUser, user }) {
-  console.log('user', user);
   const [formData, setFormData] = useState({
     id: `${user._id}`,
     phoneNumber: `${user.phoneNumber}`,
@@ -65,11 +64,9 @@ function EditUser({ setShowModalEdit, getAllUser, user }) {
     // e.preventDefault();
     try {
       let isValidateForm = validateForm();
-      console.log('isValidateForm', isValidateForm);
 
       if (isValidateForm) {
         let data = await adminServise.editUser(formData);
-        console.log('form data', data);
 
         if (data.data.errCode === 0) {
           getAllUser();

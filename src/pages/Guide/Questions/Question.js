@@ -15,7 +15,6 @@ const cx = classNames.bind(styles);
 function Question() {
   useEffect(() => {
     const collapseItemElement = document.querySelectorAll(`.${cx('collapse__header')}`);
-    console.log(collapseItemElement);
     for (var i = 0; i < collapseItemElement.length; i++) {
       collapseItemElement[i].addEventListener('click', (e) => {
         e.target.classList.toggle(`${cx('active')}`);

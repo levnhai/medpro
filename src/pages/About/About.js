@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './About.module.scss';
 import { SliderData1, SliderData2 } from './SliderData';
-import { Qr_zaloIcon, PhoneIcon } from '~/components/Icon';
+import { PhoneIcon } from '~/components/Icon';
 import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
@@ -212,11 +212,17 @@ function About() {
             </div>
             <div className={cx('support_qrCard')}>
               <div className={cx('support_qr')}>
-                <Qr_zaloIcon />
+                <img
+                  alt=""
+                  src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F038be8dc-47bd-43a8-a1a4-fb5e5e804b1a-zalo.png&w=1920&q=75"
+                />
                 Zalo
               </div>
               <div className={cx('support_qr')}>
-                <Qr_zaloIcon />
+                <img
+                  alt=""
+                  src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F038be8dc-47bd-43a8-a1a4-fb5e5e804b1a-zalo.png&w=1920&q=75"
+                />
                 Facebook
               </div>
             </div>

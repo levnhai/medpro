@@ -85,7 +85,6 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
       let validationError = validateForm();
       if (validationError === true) {
         let data = await userServise.handleCreateUser(formData);
-        console.log('data rea', data.messageError);
         if (data.errCode === 0 && data.userData) {
           getAllUser();
           setShowModalCreate(false);

@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
 import Header from '../components/Header';
 
-import { CheckIcon } from '~/components/Icon';
 import Support from '~/layouts/components/Support';
+import { BsCheckLg } from 'react-icons/bs';
+
 import styles from './Refunds.module.scss';
 
 const cx = classNames.bind(styles);
@@ -28,7 +29,7 @@ function Question() {
                 </div>
                 <ul>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Bạn chỉ được hoàn tiền khi thực hiện thành công yêu cầu hủy phiếu khám bệnh trên phần mềm
                     theo yêu cầu quy định
                   </li>
@@ -43,7 +44,7 @@ function Question() {
                 </div>
                 <ul>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Khi bạn thực hiện việc thanh toán bằng phương thức nào, thì phần mềm hoàn tiền cho bạn bằng
                     đúng phương thức và đúng số tiền đã thanh toán trước đó.
                   </li>
@@ -58,19 +59,19 @@ function Question() {
                 </div>
                 <ul>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Thẻ khám bệnh: 1 - 30 ngày làm việc.
                   </li>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Thẻ ATM nội địa: 1 - 30 ngày làm việc.
                   </li>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Thẻ tín dụng VISA, MasterCard: 1 - 45 ngày làm việc.
                   </li>
                   <li>
-                    <CheckIcon />
+                    <BsCheckLg className={cx('check-icon')} />
                     &nbsp; Tính từ thời điểm bạn thực hiện hủy phiếu khám bệnh thành công, nếu quá thời gian công trên
                     bạn vẫn chưa nhận được tiền hoàn, vui lòng liên hệ tổng đài 1900 2115 chúng tôi sẽ hổ trợ bạn.
                   </li>

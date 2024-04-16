@@ -1,11 +1,11 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import { FaUserDoctor } from 'react-icons/fa6';
+import { GrSchedules } from 'react-icons/gr';
 
-export const SidebarData = [
+export const AdminData = [
   {
     title: 'Trang chủ',
     path: '/system',
@@ -45,13 +45,31 @@ export const SidebarData = [
     icon: <FaUserDoctor />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
-  },
 
+    subNav: [
+      {
+        title: 'Thông tin chi tiết',
+        path: '/system/docter-infor',
+      },
+    ],
+  },
+  {
+    title: 'Quản lý khám bệnh',
+    path: '/docter/manage-schedule',
+    icon: <GrSchedules />,
+  },
   {
     title: 'Support',
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
+  },
+];
+export const Docterdata = [
+  {
+    title: 'Quản lý khám bệnh',
+    path: '/docter/manage-schedule',
+    icon: <GrSchedules />,
   },
 ];

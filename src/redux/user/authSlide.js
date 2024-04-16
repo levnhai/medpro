@@ -4,7 +4,6 @@ import axios from '~/axios';
 export const fetchTopDoctors = createAsyncThunk('auth/authSlice', async (limit, thunkAPI) => {
   try {
     const response = await axios.get(`/api/get-top-docter?limit=${limit}`);
-    console.log('response', response);
     return response.data;
   } catch (error) {
     throw new Error(error.message);

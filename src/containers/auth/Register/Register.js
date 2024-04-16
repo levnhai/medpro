@@ -38,7 +38,6 @@ function Register() {
     const formData = { ...data, phoneNumber: isPhoneNumber };
     try {
       let data = await userServise.handleCreateUser(formData);
-      console.log('data', data);
       if (data.errCode === 0 && data.userData) {
         navigate('/');
         toast.success(data.messageError);

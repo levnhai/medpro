@@ -468,4 +468,9 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
 }

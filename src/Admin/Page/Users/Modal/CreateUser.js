@@ -29,7 +29,6 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
   const handleSubmitCreateUser = methods.handleSubmit(async (formData) => {
     try {
       let data = await userServise.handleCreateUser(formData);
-      console.log('data', data);
       if (data.errCode === 0 && data.userData) {
         getAllUser();
         setShowModalCreate(false);

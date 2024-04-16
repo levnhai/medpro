@@ -21,7 +21,6 @@ function User() {
   // lấy tất cả user có trong database
   const handleGetAllUser = async () => {
     const getAllUsers = await adminServices.getAllData('R3');
-    console.log(getAllUsers);
     if (getAllUsers) {
       setUserData(getAllUsers.users);
     }

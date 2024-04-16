@@ -83,10 +83,8 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     e.preventDefault();
     try {
       let validationError = validateForm();
-      console.log(validationError);
       if (validationError) {
         let data = await adminServise.editUser(formData);
-        console.log('validationError', data);
         if (data.data.errCode === 0) {
           getAllDocter();
           setShowModalEdit(false);
@@ -106,10 +104,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     }
     let file = e.target.files[0];
     if (file) {
-      // const objectURL = URL.createObjectURL(file);
       const urlBase64 = await ConvertBase64(file);
-      console.log('thành công 1', urlBase64);
-      // setpreViewImageURL(objectURL);
       setImageData(urlBase64);
       setFormData({ ...formData, image: urlBase64 });
     }

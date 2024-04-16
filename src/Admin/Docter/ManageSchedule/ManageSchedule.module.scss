@@ -1,0 +1,89 @@
+.header {
+  margin: 20px 0px;
+  height: 50px;
+  padding: 20px;
+  color: rgb(92, 105, 227);
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.body {
+  height: 100%;
+  margin: 0px 140px;
+  min-height: 400px;
+  z-index: 1;
+}
+.wrapper--input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  z-index: 100;
+  top: 0px;
+}
+
+.input--item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  z-index: 1;
+  top: 10px;
+}
+
+.input--item label {
+  padding-left: 10px;
+  color: #666;
+}
+
+.customInput {
+  height: 50px;
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 0px 20px;
+  width: 100%;
+  min-width: 250px;
+  border: 1px solid #999;
+
+  &:focus {
+    color: #495057;
+    background-color: #fff;
+    border: 2px solid #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+.pick-hour {
+  width: 100%;
+  margin: 40px 0px;
+
+  .wapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .timebtn {
+      color: #666;
+      border-color: #666;
+      padding: 16px 8px;
+    }
+
+    .active {
+      background-color: rgb(103, 230, 226);
+      border: 1px solid #fff;
+    }
+  }
+}
+
+.btn-action {
+  Button {
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+}

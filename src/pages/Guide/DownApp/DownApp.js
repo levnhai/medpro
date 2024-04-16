@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import Header from '../components/Header';
 
-import { CheckIcon } from '~/components/Icon';
+import { BsCheckLg } from 'react-icons/bs';
+
 import Support from '~/layouts/components/Support';
 import styles from './DownApp.module.scss';
 
@@ -24,21 +25,21 @@ function DownApp() {
             <ul className={cx('content_list')}>
               <li className={cx('content_item')}>
                 <h2>
-                  <CheckIcon />
+                  <BsCheckLg style={{ color: '#116bea' }} />
                   Cách 1:
                 </h2>
                 <h3> Tải ứng dụng:</h3>
               </li>
               <li className={cx('content_item')}>
                 <h2>
-                  <CheckIcon />
+                  <BsCheckLg style={{ color: '#116bea' }} />
                   Cách 2:
                 </h2>
                 <h3> Tìm kiếm theo từ khóa "Medpro" trên App Store(IOS) hoặc Google Play(Android)</h3>
               </li>
               <li className={cx('content_item')}>
                 <h2>
-                  <CheckIcon />
+                  <BsCheckLg style={{ color: '#116bea' }} />
                   Cách 3:
                 </h2>
                 <div className={cx('content_Qr')}>

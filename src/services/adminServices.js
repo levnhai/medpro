@@ -1,5 +1,4 @@
 import axios from '../axios';
-// const axios = require('axios');
 
 const adminServise = {
   // user docter and admin
@@ -7,7 +6,6 @@ const adminServise = {
     return axios.get(`/api/all-data?id=${Id}`);
   },
   editUser(data) {
-    console.log('data', data);
     return axios.put('/api/edit-user', data);
   },
   deleteUser(userId) {
@@ -23,10 +21,23 @@ const adminServise = {
     return axios.get('/api/get-all-province');
   },
 
+  // province
+  getAllCodeData(typeInput) {
+    return axios.get(`api/get-all-code-services?type=${typeInput}`);
+  },
+
   // create new clinic
   createNewClinic(data) {
-    console.log('data', data);
     return axios.post('/api/create-new-hospital', data);
+  },
+
+  // schedule
+  saveBulkScheduleDocter(data) {
+    return axios.post('/api/bulk-create-schedule', data);
+  },
+
+  getAllHospital() {
+    return axios.get('/api/get-all-hospital');
   },
 };
 

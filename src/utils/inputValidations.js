@@ -59,9 +59,9 @@ export const password_validation = {
 export const num_validation = {
   name: 'num',
   label: 'number',
-  type: 'number',
+  type: 'text',
   id: 'num',
-  placeholder: 'write a random number',
+  placeholder: 'Please enter your number...',
   validation: {
     required: {
       value: true,

@@ -4,6 +4,7 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { FormProvider, useForm } from 'react-hook-form';
 import 'react-markdown-editor-lite/lib/index.css';
+import { ConvertBase64 } from '~/utils/common';
 
 import { Input } from '~/components/Input/Input';
 import Button from '~/components/Button';
@@ -48,6 +49,15 @@ function Hospital() {
     });
   };
 
+  const handleOnChangeImage = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    let file = e.target.files[0];
+    const urlBase64 = await ConvertBase64(file);
+    setFormData({ ...formData, image: urlBase64 });
+  };
+
   // onClick
   const handleEditorChange = ({ html, text }) => {
     setFormData({ ...formData, contentHTML: html, contentMarkdown: text });
@@ -63,7 +73,6 @@ function Hospital() {
       let result = { ...data, ...formData };
       let res = await adminServices.createNewClinic(result);
       if (res.errCode === 0 && res.hospitalData) {
-        console.log('thanh cong');
         resetInput();
         toast.success(res.messageError);
       } else {
@@ -153,19 +162,14 @@ function Hospital() {
               </div>
               <div style={{ paddingTop: '20px' }}>
                 <label className={cx('input-lable')}>image</label>
-                {/* <label className={cx('label-uploadImage')} htmlFor="upload-image">
-                  Upload image */}
-                {/* </label> */}
                 <input
                   className={cx('customInput')}
                   id="upload-image"
                   accept="image/*"
-                  // onChange={handleOnChangeImage}
+                  onChange={handleOnChangeImage}
                   type="file"
+                  // value={formData.image}
                   name="image"
-                  onChange={handleOnchange}
-                  value={formData.image}
-                  // hidden
                 ></input>
               </div>
             </div>

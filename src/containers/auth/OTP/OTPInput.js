@@ -106,7 +106,6 @@ function OtpInput() {
 
   const handleverifyOtp = () => {
     if (otpInput === randomOtp) {
-      console.log('thành công');
       navigate('/register-account');
     } else {
       toast.error('Nhập otp không chính xác');

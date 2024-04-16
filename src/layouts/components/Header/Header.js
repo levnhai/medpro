@@ -56,26 +56,13 @@ function Header() {
     }
   };
 
-  // // bắt sự kiện cuộn chuôt => ch thành công
-  // const handleScroll = () => {
-  //   const scrollTop = window.pageYOffset;
-  //   console.log(scrollTop);
-  //   if (scrollTop && scrollTop >= 50) {
-  //     setIsScroll(false);
-  //   } else {
-  //     setIsScroll(true);
-  //   }
-  // };
-
   useEffect(() => {
     //
     handleshortName();
 
     document.addEventListener('click', handleClickOusideModal);
-    // document.addEventListener('scroll', handleScroll);
     return () => {
       document.removeEventListener('click', handleClickOusideModal);
-      // document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -127,7 +114,7 @@ function Header() {
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn && `${user.userData.fullName}` ? shortName : 'Tài khoản'}
+                  {isLoggedIn && user.userData && `${user.userData.fullName}` ? shortName : 'Tài khoản'}
                 </Button>
               </div>
             </div>
@@ -247,12 +234,12 @@ function Header() {
                   <div className={cx('menu')}>
                     <ul>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-tai-co-so">
                           Đặt khám tại cơ sở
                         </Link>
                       </li>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                           Đặt khám theo bác sĩ
                         </Link>
                       </li>

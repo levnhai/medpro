@@ -28,7 +28,6 @@ function Docter() {
 
   // xóa docter theo id
   const handleBtnDeleteDocter = async (docterId) => {
-    console.log('docterId', docterId);
     setShowModalDelete(true);
     setDeleteDocterId(docterId);
   };
