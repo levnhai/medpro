@@ -25,8 +25,8 @@ import Docter from '~/Admin/Page/Docter';
 import Dashboard from '~/Admin/Page/Dashboard';
 import Hospital from '~/Admin/Page/Hospital';
 import User from '~/Admin/Page/Users';
-import ManageSchedule from '~/Admin/Docter/ManageSchedule';
-import DocterInfor from '~/Admin/Docter/DocterInfor';
+import ManageSchedule from '~/Admin/Page/Docter/ManageSchedule';
+import DocterInfor from '~/Admin/Page/Docter/DocterInfor';
 
 // notFound
 import NotFound from '~/pages/NotFound';

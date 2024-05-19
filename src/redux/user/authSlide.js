@@ -1,21 +1,11 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '~/axios';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const fetchTopDoctors = createAsyncThunk('auth/authSlice', async (limit, thunkAPI) => {
-  try {
-    const response = await axios.get(`/api/get-top-docter?limit=${limit}`);
-    return response.data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-});
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false,
     user: null,
     phoneNumber: null,
-    topDoctors: [],
     loading: false,
     error: null,
   },
@@ -32,21 +22,7 @@ const authSlice = createSlice({
       state.phoneNumber = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchTopDoctors.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchTopDoctors.fulfilled, (state, action) => {
-        state.loading = false;
-        state.topDoctors = action.payload;
-      })
-      .addCase(fetchTopDoctors.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
+  extraReducers: (builder) => {},
 });
 
 export const { loginUser, logoutUser, phoneNumber } = authSlice.actions;

@@ -17,4 +17,42 @@ module.exports = {
     const formattedDate = `${day}/${month}/${year}`;
     return formattedDate;
   },
+
+  // is valis phone number in vietnam
+  regexPhoneNumber: function (phoneNumber) {
+    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
+    return phoneNumber.match(regexPhoneNumber) ? true : false;
+  },
+
+  // buid data input react select
+  builDataInputSelect: function (inputData, type) {
+    let result = [];
+    if (inputData && inputData.length > 0) {
+      if (type === 'USERS') {
+        inputData.map((item) => {
+          let object = {};
+          object.value = item._id;
+          object.label = item.fullName;
+          return result.push(object);
+        });
+      }
+      if (type === 'ALLCODES') {
+        inputData.map((item) => {
+          let object = {};
+          object.value = item.keyMap;
+          object.label = item.valueVn;
+          return result.push(object);
+        });
+      }
+      if (type === 'PROVINCE') {
+        inputData.map((item) => {
+          let object = {};
+          object.value = item.code;
+          object.label = item.name;
+          return result.push(object);
+        });
+      }
+    }
+    return result;
+  },
 };
