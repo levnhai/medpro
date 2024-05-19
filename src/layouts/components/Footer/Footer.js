@@ -1,3 +1,4 @@
+import Button from '~/components/Button';
 import classNames from 'classnames/bind';
 
 import styles from './Footer.module.scss';
@@ -35,22 +36,22 @@ function Footer() {
             <h3 className={cx('footer_title')}>Dịch vụ y tế</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Đặt khám tại cơ sở</a>
+                <Button to="#">Đặt khám tại cơ sở</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Đặt khám theo bác sỉ</a>
+                <Button to="#">Đặt khám theo bác sỉ</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Tư vấn khám bệnh từ xa</a>
+                <Button to="#">Tư vấn khám bệnh từ xa</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Đặt lịch xét nghiệm</a>
+                <Button to="#">Đặt lịch xét nghiệm</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">y tế tại nhà</a>
+                <Button to="#">y tế tại nhà</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Thanh toán tại nhà</a>
+                <Button to="#">Thanh toán tại nhà</Button>
               </li>
             </ul>
           </div>
@@ -58,16 +59,16 @@ function Footer() {
             <h3 className={cx('footer_title')}>Cơ sở y tế</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Bệnh viện công</a>
+                <Button to="#">Bệnh viện công</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Bệnh viện tư</a>
+                <Button to="#">Bệnh viện tư</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Phòng khám</a>
+                <Button to="#">Phòng khám</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Phòng mạch</a>
+                <Button to="#">Phòng mạch</Button>
               </li>
             </ul>
           </div>
@@ -75,16 +76,16 @@ function Footer() {
             <h3 className={cx('footer_title')}>Hướng dẫn</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Cài đặt ứng dụng</a>
+                <Button to="/huong-dan/cai-dat-ung-dung">Cài đặt ứng dụng</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Đặt khám</a>
+                <Button to="/huong-dan/dat-lich-kham">Đặt khám</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Quy trình hoàn phí</a>
+                <Button to="/huong-dan/quy-trinh-hoan-phi">Quy trình hoàn phí</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Câu hỏi thường gặp</a>
+                <Button to="/huong-dan/cau-hoi-thuong-gap">Câu hỏi thường gặp</Button>
               </li>
             </ul>
           </div>
@@ -92,13 +93,13 @@ function Footer() {
             <h3 className={cx('footer_title')}>Tin tức</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Tin dịch vụ</a>
+                <Button to="#">Tin dịch vụ</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Tin y tế</a>
+                <Button to="#">Tin y tế</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Y học thường thức</a>
+                <Button to="#">Y học thường thức</Button>
               </li>
             </ul>
           </div>
@@ -106,22 +107,22 @@ function Footer() {
             <h3 className={cx('footer_title')}>Về chúng tôi</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Giới thiệu</a>
+                <Button to="#">Giới thiệu</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Điều khoản và dịch vụ</a>
+                <Button to="#">Điều khoản và dịch vụ</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Chính sách bảo mật</a>
+                <Button to="#">Chính sách bảo mật</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <a href="#">Quy định sử dụng</a>
+                <Button to="#">Quy định sử dụng</Button>
               </li>
             </ul>
           </div>
           <div className={cx('footer_menuWapper')}>
             <div className={cx('footer_oder')}>
-              <a href="#">
+              <a href="https://apps.apple.com/us/app/id1481561748">
                 <img
                   src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdadangky.a0a8489c.png&w=256&q=75"
                   alt=""

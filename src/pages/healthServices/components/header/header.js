@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import style from './header.module.scss';
-import Button from '~/components/Button';
 const cx = classNames.bind(style);
 
 function Header({ bannerImage, title, contentSpan }) {

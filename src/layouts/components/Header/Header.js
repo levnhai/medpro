@@ -202,22 +202,22 @@ function Header() {
                   <div className={cx('menu')}>
                     <ul>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                           Bệnh viện công
                         </Link>
                       </li>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                           Bệnh viện tư
                         </Link>
                       </li>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                           Phòng khám
                         </Link>
                       </li>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                           Phòng mạch
                         </Link>
                       </li>
@@ -225,7 +225,7 @@ function Header() {
                   </div>
                 </li>
                 <li className={cx('navbarItem')}>
-                  <Link className={cx('navbarLink')} to="/">
+                  <Link className={cx('navbarLink')} to="/dich-vu-y-te/dat-kham-theo-bac-sy">
                     Dịch vụ y tế
                   </Link>
                   <span>
@@ -286,7 +286,7 @@ function Header() {
                         </Link>
                       </li>
                       <li className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to="/">
+                        <Link className={cx('menuLink')} to="/huong-dan/dat-lich-kham">
                           Đặt lịch khám
                         </Link>
                       </li>
