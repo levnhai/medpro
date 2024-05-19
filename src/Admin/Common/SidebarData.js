@@ -7,11 +7,13 @@ import { GrSchedules } from 'react-icons/gr';
 
 export const AdminData = [
   {
+    id: 1,
     title: 'Trang chủ',
     path: '/system',
     icon: <FaIcons.FaHome />,
   },
   {
+    id: 2,
     title: 'Người dùng',
     path: '/system/user-manage',
     icon: <FaIcons.FaRegUser />,
@@ -28,6 +30,7 @@ export const AdminData = [
     ],
   },
   {
+    id: 3,
     title: 'Bệnh viện',
     path: '/system/hospital-manage',
     icon: <FaIcons.FaClinicMedical />,
@@ -40,6 +43,7 @@ export const AdminData = [
     ],
   },
   {
+    id: 4,
     title: 'Bác sỹ',
     path: '/system/docter-manage',
     icon: <FaUserDoctor />,
@@ -54,13 +58,15 @@ export const AdminData = [
     ],
   },
   {
+    id: 5,
     title: 'Quản lý khám bệnh',
     path: '/docter/manage-schedule',
     icon: <GrSchedules />,
   },
   {
+    id: 6,
     title: 'Support',
-    path: '/support',
+    // path: '/support',
     icon: <IoIcons.IoMdHelpCircle />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,

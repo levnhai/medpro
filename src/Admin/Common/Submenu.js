@@ -1,37 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const SubMenu = ({ item, index }) => {
-  const [subnav, setSubnav] = useState(false);
-  const handleSidebar = () => {
-    setSubnav(!subnav);
-  };
-
+const SubMenu = ({ submenuItems }) => {
   return (
-    <>
-      <Link className={cx('sidebarLink')} to={item.path} onClick={handleSidebar}>
-        <div>
-          {item.icon}
-          <span className={cx('sidebar-label')}>{item.title}</span>
-        </div>
-        <div>{item.subNav && subnav ? item.iconOpened : item.subNav ? item.iconClosed : null}</div>
-      </Link>
-      {subnav &&
-        item.subNav &&
-        item.subNav.map((item, index) => {
-          return (
-            <Link className={cx('dropdown-link')} to={item.path} key={index}>
-              {item.icon}
-              <span className={cx('sidebar-label')}>{item.title}</span>
-            </Link>
-          );
-        })}
-    </>
+    <div className={cx('submenu')}>
+      {submenuItems &&
+        submenuItems.length > 0 &&
+        submenuItems.map((item) => (
+          <Link className={cx('submenu-item')} to={item.path}>
+            {item.title}
+          </Link>
+        ))}
+    </div>
   );
 };
 
