@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +12,6 @@ import { adminServices } from '~/services';
 // import AccountItem from '~/components/AccountItem';
 // import * as searchServices from '~/services/searchService';
 
-import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
 import style from './Search.module.scss';
 
@@ -23,11 +22,10 @@ function Search() {
   const [searchValueProvince, setSearchValueProvince] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [provinceData, setProvinceData] = useState([]);
 
   const inputRef = useRef();
-  const debouncedValue = useDebounce(searchValueBasic, 500);
 
   // useEffect(() => {
   //   if (!debouncedValue.trim()) {

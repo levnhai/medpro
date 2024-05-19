@@ -8,7 +8,7 @@ import style from './input.module.scss';
 
 const cx = classNames.bind(style);
 
-export const Input = ({ name, label, type, id, placeholder, validation, multiline }) => {
+export const Input = ({ name, label, type, id, placeholder, validation, multiline, onKeyDown }) => {
   const {
     register,
     formState: { errors },
@@ -18,7 +18,7 @@ export const Input = ({ name, label, type, id, placeholder, validation, multilin
   const isInvalid = isFormInvalid(inputErrors);
 
   return (
-    <div className={cx('input-item')}>
+    <div className={cx('input-item')} onKeyDown={onKeyDown}>
       <div className={cx('input-header')}>
         <label htmlFor={id} className={cx('label')}>
           {label}

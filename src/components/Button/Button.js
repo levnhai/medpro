@@ -37,10 +37,10 @@ function Button({
 
   if (to) {
     props.to = to;
-    Components = NavLink; // link nội bộ
+    Components = NavLink;
   } else if (href) {
     props.href = href;
-    Components = 'a'; // link ra bên ngoài
+    Components = 'a';
   }
   const classes = cx('wrapper', {
     [className]: className,
