@@ -19,6 +19,7 @@ const cx = classNames.bind(styles);
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const methods = useForm();
 
   const isPhoneNumber = useSelector((state) => state.auth.phoneNumber);
   const [showHidePassword, setShowHidePassword] = useState(true);
@@ -32,8 +33,6 @@ function Register() {
     setConfirmPassword(!confirmPassword);
   };
 
-  const methods = useForm();
-
   const handleSubmitCreateUser = methods.handleSubmit(async (data) => {
     const formData = { ...data, phoneNumber: isPhoneNumber };
     try {
@@ -46,44 +45,39 @@ function Register() {
         toast.error('Tạo tài khoản không thành công');
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   });
 
   return (
     <>
       <Auth>
-        <div className={cx('register--body')}>
-          <div className={cx('register--form__content')}>
-            <div className={cx('content--title__section')}>Vui lòng nhập đầy đủ thông tin</div>
-            <div className={cx('wrapper--input')}>
+        <div className={cx('register-body')}>
+          <div className={cx('register-form_content')}>
+            <div className={cx('content-title_section')}>Vui lòng nhập đầy đủ thông tin</div>
+            <div className={cx('wrapper-input')}>
               <FormProvider {...methods}>
                 <form onSubmit={(e) => e.preventDefault()} noValidate className="container">
-                  <div
-                    style={{
-                      display: 'flex',
-                      textAlign: 'center',
-                      justifyContent: 'center',
-                      flexDirection: 'column',
-                    }}
-                  >
+                  <div className={cx('input')}>
                     <div className={cx('react--tel__input')}>
                       <input type="text" className={cx('customInput')} value={isPhoneNumber} disabled />
                     </div>
 
-                    <div style={{ display: 'flex', gap: '30px' }}>
+                    <div className={cx('input-item')}>
                       <Input {...name_validation} />
                     </div>
-                    <div style={{ display: 'flex', gap: '30px', position: 'relative' }}>
+                    <div className={cx('input-item')}>
                       <Input type={showHidePassword ? 'password' : ' text'} {...password_validation} />
                       <span
-                        onClick={handleShowHidePassword}
-                        style={{ position: 'absolute', right: '14px', top: '53%', fontSize: '20px', cursor: 'pointer' }}
+                        onMouseDown={handleShowHidePassword}
+                        onMouseUp={() => setShowHidePassword(true)}
+                        onMouseLeave={() => setShowHidePassword(true)}
+                        className={cx('password-icon')}
                       >
                         {showHidePassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                       </span>
                     </div>
-                    <div style={{ display: 'flex', gap: '30px', position: 'relative' }}>
+                    <div className={cx('input-item')}>
                       <Input
                         validation={{
                           required: {
@@ -98,8 +92,10 @@ function Register() {
                         name="reEnterPassword"
                       />
                       <span
-                        onClick={handleShowHideReEnterPassword}
-                        style={{ position: 'absolute', right: '14px', top: '53%', fontSize: '20px', cursor: 'pointer' }}
+                        onMouseDown={handleShowHideReEnterPassword}
+                        onMouseUp={() => setConfirmPassword(true)}
+                        onMouseLeave={() => setConfirmPassword(true)}
+                        className={cx('password-icon')}
                       >
                         {confirmPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                       </span>

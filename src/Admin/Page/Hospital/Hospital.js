@@ -4,15 +4,15 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { FormProvider, useForm } from 'react-hook-form';
 import 'react-markdown-editor-lite/lib/index.css';
-import { ConvertBase64 } from '~/utils/common';
+import { toast } from 'react-toastify';
 
+import { ConvertBase64 } from '~/utils/common';
 import { Input } from '~/components/Input/Input';
 import Button from '~/components/Button';
 import { adminServices } from '~/services';
+import { name_validation } from '~/utils/inputValidations';
 
 import styles from './Hospital.module.scss';
-import { name_validation } from '~/utils/inputValidations';
-import { toast } from 'react-toastify';
 const cx = classNames.bind(styles);
 
 function Hospital() {
@@ -33,7 +33,7 @@ function Hospital() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const resetInput = (e) => {
+  const resetInput = () => {
     // e.preventDefault();
     reset({
       name: '',
@@ -79,7 +79,7 @@ function Hospital() {
         toast.error(res.messageError);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   });
 
