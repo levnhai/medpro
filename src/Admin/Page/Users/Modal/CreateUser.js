@@ -37,7 +37,7 @@ function CreateUser({ setShowModalCreate, getAllUser }) {
         toast.error(data.messageError);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   });
 

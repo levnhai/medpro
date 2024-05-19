@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import adminServise from '~/services/adminServices';
+import userServices from '~/services/userServices';
 import { toast } from 'react-toastify';
+import { regexPhoneNumber } from '~/utils/common';
 
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
@@ -29,12 +30,6 @@ function EditUser({ setShowModalEdit, getAllUser, user }) {
   const handleOnchange = (e) => {
     setMessageError({});
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // is valis phone number in vietnam
-  const regexPhoneNumber = (phone) => {
-    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
-    return phone.match(regexPhoneNumber) ? true : false;
   };
 
   // validate form input
@@ -66,7 +61,7 @@ function EditUser({ setShowModalEdit, getAllUser, user }) {
       let isValidateForm = validateForm();
 
       if (isValidateForm) {
-        let data = await adminServise.editUser(formData);
+        let data = await userServices.editUser(formData);
 
         if (data.data.errCode === 0) {
           getAllUser();
@@ -77,7 +72,7 @@ function EditUser({ setShowModalEdit, getAllUser, user }) {
         }
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 

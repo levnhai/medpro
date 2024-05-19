@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Button from '~/components/Button';
-import { adminServices } from '~/services';
+import { userServices } from '~/services';
 import CreateUser from './Modal/CreateUser';
 import DeleteUser from './Modal/DeleteUser';
 import EditUser from './Modal/EditUser';
@@ -20,9 +20,9 @@ function User() {
 
   // lấy tất cả user có trong database
   const handleGetAllUser = async () => {
-    const getAllUsers = await adminServices.getAllData('R3');
+    const getAllUsers = await userServices.getAllData('R3');
     if (getAllUsers) {
-      setUserData(getAllUsers.users);
+      setUserData(getAllUsers.data);
     }
   };
 

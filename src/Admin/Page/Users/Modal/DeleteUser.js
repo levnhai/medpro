@@ -1,7 +1,7 @@
 import React from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import { adminServices } from '~/services';
+import { userServices } from '~/services';
 
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
@@ -12,7 +12,7 @@ function DeleteUser({ setShowModalDelete, deleteUserID, getAllUser }) {
   // xóa user theo id
 
   const handleBtnDeleteUser = async (deleteUserID) => {
-    const user = await adminServices.deleteUser(deleteUserID);
+    const user = await userServices.deleteUser(deleteUserID);
     if (user) {
       setShowModalDelete(false);
       getAllUser();
