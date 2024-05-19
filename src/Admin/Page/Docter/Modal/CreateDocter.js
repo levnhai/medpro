@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-
 import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
+import { regexPhoneNumber } from '~/utils/common';
 import userServise from '~/services/userServices';
-import { ConvertBase64 } from '~/utils/common';
 import { toast } from 'react-toastify';
+import { ConvertBase64 } from '~/utils/common';
 
 import styles from './Modal.module.scss';
 import className from 'classnames/bind';
-import 'react-image-lightbox/style.css';
-
 const cx = className.bind(styles);
 
 function CreateDocter({ setShowModalCreate, getAllUser }) {
@@ -24,7 +23,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
     reEnterPassword: '',
     phoneNumber: '',
     gender: '',
-    roleId: '',
+    roleId: 'R2',
     positionId: '',
     image: '',
   });
@@ -44,12 +43,6 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
   const handleOnchange = (e) => {
     setMessageError({});
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // is valis phone number in vietnam
-  const regexPhoneNumber = (phone) => {
-    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
-    return phone.match(regexPhoneNumber) ? true : false;
   };
 
   // validate form input
@@ -96,7 +89,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
         toast.error('Số điện thoại đã tồn tại');
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 
@@ -172,6 +165,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     placeholder="Nhập mật khẩu"
                     className={cx('customInput')}
                     name="password"
+                    type="password"
                     onChange={handleOnchange}
                   />
                   <small className={cx('text--danger')}>{messagesError.password}</small>
@@ -182,6 +176,7 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     className={cx('customInput')}
                     name="reEnterPassword"
                     onChange={handleOnchange}
+                    type="password"
                   />
                   <small className={cx('text--danger')}>{messagesError.reEnterPassword}</small>
                 </div>
@@ -202,13 +197,13 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                     <option name="gender" disabled value="">
                       ---- Giới tính ---
                     </option>
-                    <option name="gender" value="F">
+                    <option name="gender" value="Nữ">
                       Nữ
                     </option>
-                    <option name="gender" value="O">
+                    <option name="gender" value="Khác">
                       Khác
                     </option>
-                    <option name="gender" value="M">
+                    <option name="gender" value="Nam">
                       Nam
                     </option>
                   </select>
@@ -245,47 +240,30 @@ function CreateDocter({ setShowModalCreate, getAllUser }) {
                   <small className={cx('text--danger')}>{messagesError.positionId}</small>
                 </div>
                 <div>
-                  <select onChange={handleOnchange} value={formData.roleId} className={cx('customInput')} name="roleId">
-                    <option name="roleId" disabled value="">
-                      --- Role id ---
-                    </option>
-                    <option name="roleId" value="R2">
-                      Bác sỹ
-                    </option>
-                    <option name="roleId" value="R1">
-                      Quản trị viên
-                    </option>
-                    <option name="roleId" value="R3">
-                      Người dùng
-                    </option>
-                  </select>
-                  <small className={cx('text--danger')}>{messagesError.roleId}</small>
-                </div>
-              </div>
-              <div className={cx('input--item')}>
-                <div>
-                  <label className={cx('label-uploadImage')} htmlFor="upload-image">
-                    Upload image
-                  </label>
-                  <input
-                    className={cx('customInput')}
-                    id="upload-image"
-                    accept="image/*"
-                    onChange={handleOnChangeImage}
-                    type="file"
-                    name="image"
-                    hidden
-                  ></input>
-                  {previewImageURL ? (
-                    <div
-                      className={cx('upload-image')}
-                      onClick={handleOpenImage}
-                      style={{ backgroundImage: `url(${previewImageURL})` }}
-                    ></div>
-                  ) : (
-                    ''
-                  )}
-                  {isOpenImage && <Lightbox mainSrc={previewImageURL} onCloseRequest={() => setIsOpenImage(false)} />}
+                  <div>
+                    <label className={cx('label-uploadImage')} htmlFor="upload-image">
+                      Upload image
+                    </label>
+                    <input
+                      className={cx('customInput')}
+                      id="upload-image"
+                      accept="image/*"
+                      onChange={handleOnChangeImage}
+                      type="file"
+                      name="image"
+                      hidden
+                    ></input>
+                    {previewImageURL ? (
+                      <div
+                        className={cx('upload-image')}
+                        onClick={handleOpenImage}
+                        style={{ backgroundImage: `url(${previewImageURL})` }}
+                      ></div>
+                    ) : (
+                      ''
+                    )}
+                    {isOpenImage && <Lightbox mainSrc={previewImageURL} onCloseRequest={() => setIsOpenImage(false)} />}
+                  </div>
                 </div>
               </div>
             </div>

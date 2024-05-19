@@ -3,9 +3,11 @@ import { RiCloseLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Lightbox from 'react-image-lightbox';
 import { Buffer } from 'buffer';
+import { regexPhoneNumber } from '~/utils/common';
 
 import { ConvertBase64 } from '~/utils/common';
-import adminServise from '~/services/adminServices';
+
+import { userServices } from '~/services';
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
 
@@ -46,12 +48,6 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // is valis phone number in vietnam
-  const regexPhoneNumber = (phone) => {
-    const regexPhoneNumber = /(0[3|7|9])+([0-9]{8})\b/g;
-    return phone.match(regexPhoneNumber) ? true : false;
-  };
-
   // validate form input
   const validateForm = () => {
     if (formData.fullName.trim() === '') {
@@ -84,7 +80,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
     try {
       let validationError = validateForm();
       if (validationError) {
-        let data = await adminServise.editUser(formData);
+        let data = await userServices.editUser(formData);
         if (data.data.errCode === 0) {
           getAllDocter();
           setShowModalEdit(false);
@@ -94,7 +90,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
         }
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 
@@ -121,7 +117,7 @@ function EditDocter({ setShowModalEdit, getAllDocter, docterData }) {
       const base64String = Buffer.from(docterData.image.data, 'base64').toString('binary');
       setImageData(base64String);
     }
-  }, []);
+  }, [docterData.image]);
 
   return (
     <>

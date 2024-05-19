@@ -1,30 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
 import Button from '~/components/Button';
-import { adminServices } from '~/services';
 import CreateDocter from './Modal/CreateDocter';
 import DeleteDocter from './Modal/DeleteDocter';
 import EditDocter from './Modal/EditDocter';
 import classNames from 'classnames/bind';
 import styles from './Docter.module.scss';
+import { fetchAllDoctors } from '~/redux/docter/docterSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Docter() {
-  const [userData, setUserData] = useState(null);
+  const dispatch = useDispatch();
+  const docterData = useSelector((state) => state.docter.docterData);
+
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState();
   const [deleteDocterId, setDeleteDocterId] = useState();
   const [editDocter, setEditDocter] = useState({});
-
-  // lấy tất cả user có trong database
-  const handleGetAllDocter = async () => {
-    const getAllDocters = await adminServices.getAllData('R2');
-    if (getAllDocters) {
-      setUserData(getAllDocters.users);
-    }
-  };
 
   // xóa docter theo id
   const handleBtnDeleteDocter = async (docterId) => {
@@ -38,9 +33,12 @@ function Docter() {
     setEditDocter(data);
   };
 
+  // lấy tất cả docter có trong database
   useEffect(() => {
-    handleGetAllDocter();
-  }, []);
+    dispatch(fetchAllDoctors());
+  }, [dispatch]);
+
+  useEffect(() => {}, [docterData]);
 
   return (
     <div className={cx('wapper')}>
@@ -70,8 +68,8 @@ function Docter() {
                 <th></th>
               </tr>
             </thead>
-            {userData &&
-              userData.data.map((user, index) => {
+            {docterData &&
+              docterData.map((user, index) => {
                 return (
                   <tbody>
                     <tr>
@@ -123,13 +121,19 @@ function Docter() {
         {showModalDelete && (
           <DeleteDocter
             setShowModalDelete={setShowModalDelete}
-            handleGetAllDocter={handleGetAllDocter}
+            handleGetAllDocter={() => dispatch(fetchAllDoctors())}
             deleteDocterId={deleteDocterId}
           />
         )}
-        {showModalCreate && <CreateDocter setShowModalCreate={setShowModalCreate} getAllUser={handleGetAllDocter} />}
+        {showModalCreate && (
+          <CreateDocter setShowModalCreate={setShowModalCreate} getAllUser={() => dispatch(fetchAllDoctors())} />
+        )}
         {showModalEdit && (
-          <EditDocter setShowModalEdit={setShowModalEdit} getAllDocter={handleGetAllDocter} docterData={editDocter} />
+          <EditDocter
+            setShowModalEdit={setShowModalEdit}
+            docterData={editDocter}
+            getAllDocter={() => dispatch(fetchAllDoctors())}
+          />
         )}
       </div>
     </div>

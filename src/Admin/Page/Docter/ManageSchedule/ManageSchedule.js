@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Select, { createFilter } from 'react-select';
 import { adminServices } from '~/services';
 import { formattedDate } from '~/utils/common';
@@ -7,6 +6,8 @@ import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '~/assets/css/react-datepicker.css';
+import { fetchAllDoctors } from '~/redux/docter/docterSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '~/components/Button';
 
@@ -16,13 +17,14 @@ import style from './ManageSchedule.module.scss';
 const cx = classNames.bind(style);
 
 function ManageSchedule() {
-  const MIN_INPUT_LENGTH = 3;
+  const dispatch = useDispatch();
+
+  const allDoctors = useSelector((state) => state.docter.docterData);
+
   const [listDocters, setListDocters] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [rangeTime, setRangeTime] = useState([]);
   const [valueSelectedOption, setValueSelectedOption] = useState(null);
-
-  const topDoctors = useSelector((state) => state.auth.topDoctors);
 
   const customStyles = {
     option: (provided, state) => ({
@@ -34,17 +36,17 @@ function ManageSchedule() {
       backgroundColor: state.isSelected ? 'lightblue' : state.isFocused ? '#61bdbf' : 'white', // Change background color for selected options
     }),
   };
-
+  // search
   const filterOption = (candidate, listDocters) => {
     return listDocters.length >= 0 && createFilter({})(candidate, listDocters);
   };
 
-  const noOptionsMessage = (input) => (input.length >= MIN_INPUT_LENGTH ? 'No options' : 'No data docter');
+  const noOptionsMessage = (input) => (input && input.length >= 0 ? 'No options' : 'No data docter');
 
   const builDataInputSelect = (inputData) => {
     let result = [];
-    if (inputData && inputData.data.length > 0) {
-      inputData.data.map((item) => {
+    if (inputData && inputData.length > 0) {
+      inputData.map((item) => {
         let object = {};
         object.value = item._id;
         object.label = item.fullName;
@@ -108,7 +110,14 @@ function ManageSchedule() {
   };
 
   useEffect(() => {
-    setListDocters(builDataInputSelect(topDoctors));
+    dispatch(fetchAllDoctors());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setListDocters(builDataInputSelect(allDoctors));
+  }, [allDoctors]);
+
+  useEffect(() => {
     handleGetALlDataRangeTime();
   }, []);
 

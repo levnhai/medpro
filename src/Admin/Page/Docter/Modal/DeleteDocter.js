@@ -1,7 +1,7 @@
 import React from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import { adminServices } from '~/services';
+import { userServices } from '~/services';
 
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
@@ -10,7 +10,7 @@ const cx = className.bind(styles);
 
 function DeleteDocter({ setShowModalDelete, deleteDocterId, handleGetAllDocter }) {
   const handleBtnDeleteDocter = async (deleteById) => {
-    const docter = await adminServices.deleteUser(deleteById);
+    const docter = await userServices.deleteUser(deleteById);
     if (docter) {
       setShowModalDelete(false);
       handleGetAllDocter();
