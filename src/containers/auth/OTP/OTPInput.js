@@ -99,9 +99,7 @@ function OtpInput() {
     });
 
     //focus phần tử đầu tiên khi reload trang
-    window.addEventListener('load', () => {
-      inputSendCode[0].focus();
-    });
+    inputSendCode[0].focus();
   }, []);
 
   const handleverifyOtp = () => {
@@ -139,7 +137,17 @@ function OtpInput() {
 
             <input className="otpInput" type="tel" maxLength={1} disabled />
 
-            <input className="otpInput" type="tel" maxLength={1} disabled />
+            <input
+              className="otpInput"
+              type="tel"
+              maxLength={1}
+              disabled
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleverifyOtp();
+                }
+              }}
+            />
           </form>
           <p className="errorMessage"></p>
           <Button
@@ -172,7 +180,7 @@ function OtpInput() {
                     <Button className="collapseBtn">Gửi lại mã xác nhận</Button>
                     <Button
                       onClick={() => {
-                        console.log('thanh cong');
+                        alert('Xin lỗi, tính năng này đang phát triển ....');
                       }}
                       className="collapseBtn"
                     >

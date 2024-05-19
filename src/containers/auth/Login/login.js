@@ -29,7 +29,8 @@ function Login() {
   const [passwordShowHide, setPasswordShowHide] = useState(true);
 
   // handle action onChange show hide password
-  const handleShowHidePassword = () => {
+  const handleShowHidePassword = (e) => {
+    e.preventDefault();
     setPasswordShowHide(!passwordShowHide);
   };
 
@@ -44,7 +45,7 @@ function Login() {
         toast.error('Thông tin đăng nhập không chính xác');
       }
     } catch (error) {
-      console.log('lỗi r bạn ơi ');
+      toast.error('lỗi r bạn ơi ');
     }
   });
 
@@ -59,7 +60,7 @@ function Login() {
           <p className={cx('text-center')}>Vui lòng đăng nhập để tiếp tục</p>
           <div className={cx('wrapper-input')}>
             <div className={cx('tel-input')}>
-              <input className={cx('form-control')} value={isphone} disabled />
+              <input onDoubleClick={null} className={cx('form-control')} value={isphone} disabled />
               <div className={cx('selected-flag')}>
                 <img
                   src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
@@ -69,17 +70,20 @@ function Login() {
             </div>
             <div className={cx('tel-input')}>
               <FormProvider {...methods}>
-                <Input type={passwordShowHide ? 'password' : ' text'} {...password_validation} />
-                <span
-                  onClick={handleShowHidePassword}
-                  style={{
-                    position: 'absolute',
-                    right: '12px',
-                    top: '45%',
-                    padding: '4px',
-                    fontSize: '20px',
-                    cursor: 'pointer',
+                <Input
+                  type={passwordShowHide ? 'password' : ' text'}
+                  {...password_validation}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleLogin();
+                    }
                   }}
+                />
+                <span
+                  onMouseDown={handleShowHidePassword}
+                  onMouseUp={() => setPasswordShowHide(true)}
+                  onMouseLeave={() => setPasswordShowHide(true)}
+                  className={cx('passwordIcon')}
                 >
                   {passwordShowHide ? <AiFillEyeInvisible /> : <AiFillEye />}
                 </span>
@@ -95,7 +99,9 @@ function Login() {
             Tiếp tục
           </Button>
           <div className={cx('text-right')}>
-            <p className={cx('forgot-password')}>Quên mật khẩu ?</p>
+            <p onClick={() => alert('Xin lỗi, Tính năng này đang được phát triển')} className={cx('forgot-password')}>
+              Quên mật khẩu ?
+            </p>
           </div>
         </div>
       </Auth>

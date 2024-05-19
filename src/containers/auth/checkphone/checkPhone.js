@@ -60,13 +60,14 @@ function CheckPhone() {
           <FormProvider {...methods}>
             <div className={cx('wrapper-input')}>
               <div className={cx('tel-input')}>
-                <Input {...phone_validation} />
-                {/* <div className="selected-flag">
-                  <img
-                    src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
-                    alt="vietnamese"
-                  />
-                </div> */}
+                <Input
+                  {...phone_validation}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleBtnLogin();
+                    }
+                  }}
+                />
               </div>
             </div>
           </FormProvider>

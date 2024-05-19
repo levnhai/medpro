@@ -43,7 +43,7 @@ function AdminLogin() {
         toast.error('Thông tin đăng nhập không chính xác');
       }
     } catch (error) {
-      console.log('lỗi r bạn ơi ');
+      toast.error('lỗi r bạn ơi ');
     }
   });
 
