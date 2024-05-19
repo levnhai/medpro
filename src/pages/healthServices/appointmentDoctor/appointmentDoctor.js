@@ -1,28 +1,31 @@
 import classNames from 'classnames/bind';
 import style from './appointmentDoctor.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../components/header/header';
 import Search from '~/components/Search';
 import Button from '~/components/Button';
 import { useEffect, useState, useMemo } from 'react';
 import { Buffer } from 'buffer';
-import { adminServices } from '~/services';
 import Pagination from '~/components/Pagination/pagination';
+import { fetchALlDataHospital } from '~/redux/hospital/hospitalSlider';
 
 const cx = classNames.bind(style);
-
 let PageSize = 4;
+
 function AppointmentDoctor() {
-  const [hospitalData, setHospitalData] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const hospitalData = useSelector((state) => state.hospital.hospitalData);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return hospitalData.slice(firstPageIndex, lastPageIndex);
+    return hospitalData && hospitalData.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalData]);
 
   const handleDetailAppointmentDoctor = (item) => {
@@ -30,12 +33,8 @@ function AppointmentDoctor() {
   };
 
   useEffect(() => {
-    const callApi = async () => {
-      let res = await adminServices.getAllHospital();
-      setHospitalData(res.hospital.data);
-    };
-    callApi();
-  }, []);
+    dispatch(fetchALlDataHospital());
+  }, [dispatch]);
 
   return (
     <div className={cx('main')}>
@@ -48,17 +47,17 @@ function AppointmentDoctor() {
         <Search />
         <ul className={cx('tag')}>
           <li>
-            <Button className={cx('tag-Btn')} rounded>
+            <Button className={cx('tag-Btn', { active: activeTab === 0 })} rounded onClick={() => setActiveTab(0)}>
               Tất cả
             </Button>
           </li>
           <li>
-            <Button className={cx('tag-Btn')} rounded>
+            <Button className={cx('tag-Btn', { active: activeTab === 1 })} rounded onClick={() => setActiveTab(1)}>
               Bệnh viện
             </Button>
           </li>
           <li>
-            <Button className={cx('tag-Btn')} rounded>
+            <Button className={cx('tag-Btn', { active: activeTab === 2 })} rounded onClick={() => setActiveTab(2)}>
               Phòng khám/Phòng mạch/Xét nghiệm/khác
             </Button>
           </li>
@@ -75,7 +74,7 @@ function AppointmentDoctor() {
                   <div className={cx('content-title')}>
                     <div className={cx('content-image')} style={{ backgroundImage: `url(${image})` }}></div>
                     <div className={cx('content-title-ini')}>
-                      <div className={cx('content-name')}>{item.name}</div>
+                      <div className={cx('content-name')}>{item.fullName}</div>
                       <div className={cx('content-address')}>{item.address}</div>
                       <div className={cx('content-groupBtn')}>
                         <Button className={cx('content-btn')}>Đặt khám ngay</Button>
@@ -91,7 +90,7 @@ function AppointmentDoctor() {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={hospitalData.length}
+        totalCount={hospitalData && hospitalData.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />

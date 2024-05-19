@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Buffer } from 'buffer';
 
 import Button from '~/components/Button';
-import { fetchTopDoctors } from '~/redux/user/authSlide';
+import { fetchTopDoctors } from '~/redux/docter/docterSlice';
 import style from './OutStandingDocter.module.scss';
 
 const cx = classNames.bind(style);
@@ -62,8 +62,7 @@ function SamplePrevArrow(props) {
 
 function OutStandingDocter() {
   const dispatch = useDispatch();
-  const topDoctors = useSelector((state) => state.auth.topDoctors);
-
+  const topDoctors = useSelector((state) => state.docter.topDoctors);
   var settings = {
     infinite: true,
     speed: 500,
@@ -91,8 +90,8 @@ function OutStandingDocter() {
         <div>
           <div>
             <Slider {...settings}>
-              {topDoctors.data &&
-                topDoctors.data.map((item, index) => {
+              {topDoctors &&
+                topDoctors.map((item, index) => {
                   let base64String = '';
                   if (item.image) {
                     base64String = Buffer.from(item.image, 'base64').toString('binary');
