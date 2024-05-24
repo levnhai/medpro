@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { FormProvider, useForm } from 'react-hook-form';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
@@ -38,11 +38,12 @@ function Register() {
     try {
       let data = await userServise.handleCreateUser(formData);
       if (data.errCode === 0 && data.userData) {
+        console.log('check data', data);
         navigate('/');
         toast.success(data.messageError);
         dispatch(loginUser(data));
       } else {
-        toast.error('Tạo tài khoản không thành công');
+        toast.error(data.messageError);
       }
     } catch (error) {
       toast.error(error);
@@ -132,7 +133,6 @@ function Register() {
           </div>
         </div>
       </Auth>
-      <ToastContainer position="bottom-right" />
     </>
   );
 }
