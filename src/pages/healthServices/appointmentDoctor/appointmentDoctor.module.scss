@@ -22,7 +22,7 @@
 }
 
 .tag-Btn {
-  color: #00b5f1;
+  color: var(--blue-color);
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
@@ -34,8 +34,8 @@
 
   &:hover {
     background: #fff;
-    color: #00b5f1;
-    border: 1px solid #00b5f1;
+    color: var(--blue-color);
+    border: 1px solid var(--blue-color);
   }
 }
 
@@ -57,7 +57,7 @@
 
   &:hover {
     box-shadow: none;
-    border: 1px solid #00b5f1;
+    border: 1px solid var(--blue-color);
     cursor: pointer;
   }
 }
@@ -117,7 +117,7 @@
 }
 
 .content-btn:first-child {
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   color: #fff;
 
   &:hover {
@@ -128,8 +128,8 @@
 }
 
 .content-btn:last-child {
-  color: #00b5f1;
-  border: 1px solid #00b5f1;
+  color: var(--blue-color);
+  border: 1px solid var(--blue-color);
   background-color: #fff;
   &:hover {
     background: linear-gradient(83.63deg, #d5f3fd, #f0f2f2);
@@ -137,6 +137,6 @@
 }
 
 .active {
-  background: linear-gradient(84.69deg, #00b5f1 33.56%, #00e0ff 111.25%);
+  background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
   color: #fff;
 }

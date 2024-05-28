@@ -5,7 +5,7 @@
   padding: 20px 0px;
 
   .pagination-item {
-    color: #00b5f1;
+    color: var(--blue-color);
     font-weight: 400;
     font-size: 16px;
     padding: 0 12px;
@@ -25,18 +25,18 @@
     transition: all 0.2s ease;
 
     &.dots:hover {
-      border: 1px solid #00b5f1;
+      border: 1px solid var(--blue-color);
       box-shadow: 0 4px 15px rgba(116, 157, 206, 0.5);
     }
     &:hover {
       cursor: pointer;
-      border: 1px solid #00b5f1;
+      border: 1px solid var(--blue-color);
       box-shadow: 0 4px 15px rgba(116, 157, 206, 0.5);
     }
 
     &.selected {
       color: #fff;
-      background: linear-gradient(98.96deg, #00b5f1 40.75%, #00e0ff 129.57%);
+      background: linear-gradient(98.96deg, var(--blue-color) 40.75%, #00e0ff 129.57%);
       border-radius: 4px;
       border: 1px solid transparent;
     }
@@ -48,8 +48,8 @@
         display: inline-block;
         width: 0.4em;
         height: 0.4em;
-        border-right: 0.12em solid #00b5f1;
-        border-top: 0.12em solid #00b5f1;
+        border-right: 0.12em solid var(--blue-color);
+        border-top: 0.12em solid var(--blue-color);
       }
 
       &.left {

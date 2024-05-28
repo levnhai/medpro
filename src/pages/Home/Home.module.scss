@@ -106,7 +106,7 @@
   min-width: 440px;
 }
 .info_header_text {
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -326,7 +326,7 @@
   font-size: 18px;
   line-height: 22px;
   color: var(--white-color);
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   &:hover {
     background: linear-gradient(83.63deg, #1ea0ff 33.34%, #00bfff 113.91%);
   }
@@ -681,4 +681,8 @@
 
 .home-support {
   margin-top: 64px;
+}
+
+/* Mobile và Tablet */
+@media (max-width: 1024px) {
 }

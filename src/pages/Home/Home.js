@@ -46,7 +46,9 @@ function Home() {
           </div>
           <div></div>
         </div>
-        <HealthServices />
+        <div className={cx('healthServices')}>
+          <HealthServices />
+        </div>
       </div>
       <div className={cx('home_container')}>
         <div className={cx('home_info')}>

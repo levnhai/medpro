@@ -7,7 +7,7 @@
 .tab__nav--title {
   padding: 13px 20px;
   margin-bottom: 8px;
-  background: linear-gradient(84.69deg, #00b5f1 33.56%, #00e0ff 111.25%);
+  background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
   color: #fff;
   border-radius: 4px;
   font-weight: 400;
@@ -29,8 +29,8 @@
 }
 
 .react-tabs__tab--selected {
-  border-left: 3px solid #00b5f1;
-  color: #00b5f1;
+  border-left: 3px solid var(--blue-color);
+  color: var(--blue-color);
 }
 
 .react-tabs__tab-panel {

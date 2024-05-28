@@ -1,6 +1,6 @@
 .about {
   width: 100vw;
-  background: #e8f2f7;
+  background: var(--white-color);
 }
 
 .bannerWrapper {
@@ -86,7 +86,7 @@
   line-height: 48px;
   letter-spacing: 0;
   text-align: left;
-  color: #00b5f1;
+  color: var(--blue-color);
   margin-bottom: 8px;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .Service_item strong {
-  color: #00b5f1;
+  color: var(--blue-color);
   padding-bottom: 4px;
 }
 
@@ -222,7 +222,7 @@
   line-height: 57px;
   letter-spacing: 0;
   text-align: center;
-  color: #00b5f1;
+  color: var(--blue-color);
   margin-bottom: 20px;
 }
 
@@ -369,7 +369,7 @@
   line-height: 48px;
   letter-spacing: 0;
   text-align: center;
-  color: #00b5f1;
+  color: var(--blue-color);
 }
 
 .hopital_Listlogo {

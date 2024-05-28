@@ -33,7 +33,7 @@
 }
 
 .breadcrumb__container li:nth-child(2) {
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -48,7 +48,7 @@
 }
 
 .facilitie__header--title {
-  color: #00b5f1;
+  color: var(--blue-color);
   font-weight: 700;
   font-size: 39px;
   margin-bottom: 8px;
@@ -134,7 +134,7 @@
   border: 1px px solid transparent;
 
   &:hover {
-    border: 1px solid #00b5f1;
+    border: 1px solid var(--blue-color);
     background: #ebf9fd;
     color: #11a2f3;
   }
@@ -172,7 +172,7 @@
   font-weight: 700;
   font-size: 39px;
   line-height: 46px;
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   background-clip: text;
   color: transparent;
 }
@@ -207,7 +207,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   border-radius: 12px;
   width: 100%;
   padding: 10px 30px;
@@ -221,6 +221,6 @@
 }
 
 .active {
-  background: linear-gradient(84.69deg, #00b5f1 33.56%, #00e0ff 111.25%);
+  background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
   color: #fff;
 }

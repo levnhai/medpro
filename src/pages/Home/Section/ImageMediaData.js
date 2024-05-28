@@ -10,7 +10,7 @@ export const ImageMedia = [
     link: 'https://tuoitre.vn/chuyen-doi-so-nganh-y-te-can-bat-dau-tu-viec-dang-ky-kham-chua-benh-20230216172403962.htm',
   },
   {
-    imageUrl: 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbao-nhan-dan.9670c1ee.svg&w=1920&q=75',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/vi/archive/d/d7/20221117215127%21Logo-NhanDan.png',
     alt: 'Báo nhân dân',
     link: 'https://nhandan.vn/ra-mat-phan-mem-medpro-ho-tro-dang-ky-tiem-chung-vaccine-post651550.html',
   },

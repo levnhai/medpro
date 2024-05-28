@@ -7,7 +7,9 @@ import { LogoIcon, SupportIcon } from '~/components/Icon';
 import { FaTiktok, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { MdOutlinePhoneAndroid } from 'react-icons/md';
 import { IoPersonSharp } from 'react-icons/io5';
-import { IoMdArrowDropdown } from 'react-icons/io';
+import { IoMdArrowDropdown, IoMdMenu, IoIosSearch, IoIosNotificationsOutline } from 'react-icons/io';
+import { GoPerson } from 'react-icons/go';
+import { CiCalendar } from 'react-icons/ci';
 
 import style from './Header.module.scss';
 import Button from '~/components/Button';
@@ -57,7 +59,6 @@ function Header() {
   };
 
   useEffect(() => {
-    //
     handleshortName();
 
     document.addEventListener('click', handleClickOusideModal);
@@ -340,23 +341,146 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className={cx('newMobileHeader')}>
-        <div className={cx('mobile-HeaderBar')}>
-          <div className={cx('logo')}>
-            <Link to="/">
-              <LogoIcon className={cx('logoIcon')} />
-            </Link>
+      <div className={cx('header-mobile')}>
+        <div className={cx('logo')}>
+          <a href="/">
+            <LogoIcon className={cx('icon')} />
+          </a>
+        </div>
+        <div className={cx('buttonbar-mobile')}>
+          <Button className={cx('btn_search', 'btn_headermobile')}>
+            <IoIosSearch />
+          </Button>
+          <Button className={cx('btn-menu', 'btn_headermobile')}>
+            <IoMdMenu />
+          </Button>
+        </div>
+      </div>
+      <div className={cx('nav_mobile')}>
+        <div className={cx('nav_wrapper')}>
+          <div className={cx('nav_header')}>
+            <div className={cx('logo')}>
+              <a href="/">
+                <LogoIcon className={cx('icon')} />
+              </a>
+            </div>
+            <div className={cx('buttonbar-mobile')}>
+              <Button className={cx('btn_search', 'btn_headermobile')}>
+                <IoIosSearch />
+              </Button>
+              <Button className={cx('btn-menu', 'btn_headermobile')}>
+                <IoMdMenu />
+              </Button>
+            </div>
           </div>
-          <div className={cx('btn_mobileHeader')}>
-            <Button rounded>
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </Button>
-            <Button rounded>
-              <i className="fa-solid fa-bars"></i>
-            </Button>
+          <div className={cx('nav_body')}>
+            <div className={cx('topMenu')}>
+              <Button leftIcon={<GoPerson />}>Lê Văn Hải</Button>
+            </div>
+            <div className={cx('menu_mobile')}>
+              <ul className={cx('list_menu')}>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<GoPerson />}>
+                      <span>Hồ sơ bệnh nhân</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<CiCalendar />}>
+                      <span>Phiếu khám bệnh</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<IoIosNotificationsOutline />}>
+                      <span>Thông báo</span>
+                    </Button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className={cx('menu_mobile')}>
+              <ul className={cx('list_menu')}>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<GoPerson />}>
+                      <span>Hồ sơ bệnh nhân</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<CiCalendar />}>
+                      <span>Phiếu khám bệnh</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<IoIosNotificationsOutline />}>
+                      <span>Thông báo</span>
+                    </Button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className={cx('menu_mobile')}>
+              <ul className={cx('list_menu')}>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<GoPerson />}>
+                      <span>Hồ sơ bệnh nhân</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<CiCalendar />}>
+                      <span>Phiếu khám bệnh</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<IoIosNotificationsOutline />}>
+                      <span>Thông báo</span>
+                    </Button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className={cx('menu_mobile')}>
+              <ul className={cx('list_menu')}>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<GoPerson />}>
+                      <span>Hồ sơ bệnh nhân</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<CiCalendar />}>
+                      <span>Phiếu khám bệnh</span>
+                    </Button>
+                  </div>
+                </li>
+                <li className={cx('item_menu')}>
+                  <div className={cx('item')}>
+                    <Button className={cx('btn_item')} leftIcon={<IoIosNotificationsOutline />}>
+                      <span>Thông báo</span>
+                    </Button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+      {/* <div className={cx('nav_overlay')}></div> */}
     </div>
   );
 }

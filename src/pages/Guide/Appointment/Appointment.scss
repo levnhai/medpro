@@ -26,7 +26,7 @@
   font-weight: 700;
   font-size: 31px;
   line-height: 36px;
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -140,7 +140,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
-  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

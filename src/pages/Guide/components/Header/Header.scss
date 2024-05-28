@@ -10,8 +10,8 @@
       font-weight: 700;
       font-size: 39px;
       line-height: 48px;
-      color: #00b5f1;
-      background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%);
+      color: var(--blue-color);
+      background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
@@ -47,7 +47,7 @@
     }
 
     .active {
-      background: linear-gradient(84.69deg, #00b5f1 33.56%, #00e0ff 111.25%);
+      background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
       color: #fff;
     }
   }
