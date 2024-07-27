@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import Store from './redux/store';
 import { Provider } from 'react-redux';
@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-toastify/dist/ReactToastify.css';
 import { PersistGate } from 'redux-persist/integration/react';
+
 import { persistor } from '~/redux/store';
 import GlobalStyles from '~/components/GlobalStyles';
 
@@ -14,7 +15,9 @@ root.render(
   <Provider store={Store}>
     <GlobalStyles>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <StrictMode>
+          <App />
+        </StrictMode>
       </PersistGate>
     </GlobalStyles>
   </Provider>,

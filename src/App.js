@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { publicRoutes, privateRoutes } from '~/routes';
 import { DefaultLayout } from './layouts';
 import { useSelector } from 'react-redux';
-
 import { ToastContainer } from 'react-toastify';
+
 import ScrollToTop from './components/Scroll/scrollToTop';
 
 function App() {
