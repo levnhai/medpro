@@ -24,6 +24,8 @@ function Header() {
 
   const [showModal, setShowModal] = useState(false);
   const [shortName, setShortName] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -58,6 +60,7 @@ function Header() {
     }
   };
 
+  /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => {
     handleshortName();
 
@@ -67,7 +70,48 @@ function Header() {
     };
   }, []);
 
+  // handle  scroll
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     console.log('Scrolling...', window.scrollY);
+  //     // Thực hiện các hành động bạn muốn ở đây
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   // Cleanup event listener khi component bị unmount
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log('Scrolling...', window.scrollY);
+      //     // Thực hiện các hành động bạn muốn ở đây
+      //   };
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        const currentScrollPos = window.scrollY;
+        if (currentScrollPos > prevScrollPos) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+        setPrevScrollPos(currentScrollPos);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup event listener khi component bị unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos]);
+
   return (
+    // className={cx('header')}
+    // className={!isScrolled ? cx('header', 'fixed-on-scroll') : cx('header')}
+    // className={cx('header')}
     <div className={cx('header')}>
       <div className={cx('header-wapper')}>
         <div className={cx('logo')}>
@@ -76,7 +120,8 @@ function Header() {
           </a>
         </div>
         <div className={cx('body')}>
-          <div className={cx('topNavbar')}>
+          {/* className={cx('topNavbar')} */}
+          <div className={isScrolled ? cx('topNavbar', 'fixed-on-scroll') : cx('topNavbar')}>
             <div className={cx('social')}>
               <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@medprovn/" className={cx('item')}>
                 <FaTiktok style={{ width: '1.6rem', height: '1.6rem' }} />
@@ -178,6 +223,7 @@ function Header() {
               </div>
             )}
           </div>
+          {/* cx('header_menu' */}
 
           <div className={cx('header_menu')}>
             <a href="tel:0915948664">
@@ -480,9 +526,8 @@ function Header() {
           </div>
         </div>
       </div>
-      {/* <div className={cx('nav_overlay')}></div> */}
     </div>
   );
 }
 
-export default Header;
+export default React.memo(Header);
