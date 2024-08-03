@@ -70,26 +70,9 @@ function Header() {
     };
   }, []);
 
-  // handle  scroll
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     console.log('Scrolling...', window.scrollY);
-  //     // Thực hiện các hành động bạn muốn ở đây
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   // Cleanup event listener khi component bị unmount
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
   useEffect(() => {
     const handleScroll = () => {
-      console.log('Scrolling...', window.scrollY);
-      //     // Thực hiện các hành động bạn muốn ở đây
-      //   };
-      if (window.matchMedia('(min-width: 992px)').matches) {
+      if (window.matchMedia('(min-width: 992px)').matccónhes) {
         const currentScrollPos = window.scrollY;
         if (currentScrollPos > prevScrollPos) {
           setIsScrolled(true);
@@ -109,9 +92,6 @@ function Header() {
   }, [prevScrollPos]);
 
   return (
-    // className={cx('header')}
-    // className={!isScrolled ? cx('header', 'fixed-on-scroll') : cx('header')}
-    // className={cx('header')}
     <div className={cx('header')}>
       <div className={cx('header-wapper')}>
         <div className={cx('logo')}>
@@ -120,7 +100,6 @@ function Header() {
           </a>
         </div>
         <div className={cx('body')}>
-          {/* className={cx('topNavbar')} */}
           <div className={isScrolled ? cx('topNavbar', 'fixed-on-scroll') : cx('topNavbar')}>
             <div className={cx('social')}>
               <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@medprovn/" className={cx('item')}>
